@@ -30,6 +30,33 @@
       --success: #2DBB79;
       --error:   #F35B5B;
       --warning: #F6C247;
+
+      /* 身份色：新东家（绿色） */
+      --owner-50:  #E8F8F0;
+      --owner-100: #C7EEDC;
+      --owner-200: #9BDEBF;
+      --owner-300: #6ECC9F;
+      --owner-400: #43B885;
+      --owner-500: #1E9F6D;
+      --owner-600: #0F875C;
+
+      /* 身份色：担保人（蓝色） */
+      --guarantor-50:  #E8F2FF;
+      --guarantor-100: #C7DEFF;
+      --guarantor-200: #98C4FF;
+      --guarantor-300: #6BA6FF;
+      --guarantor-400: #3C86F7;
+      --guarantor-500: #1C6DE4;
+      --guarantor-600: #0F51B8;
+
+      /* 身份色：团队长（红色） */
+      --leader-50:  #FFEDEE;
+      --leader-100: #FFD0D3;
+      --leader-200: #FFA5AB;
+      --leader-300: #FF7A83;
+      --leader-400: #F45460;
+      --leader-500: #D9303C;
+      --leader-600: #B11C27;
     }
 
     * {
@@ -245,6 +272,39 @@
       background: var(--primary-500);
     }
 
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .identity-card {
+      background: var(--neutral-0);
+      border-radius: 16px;
+      border: 1px solid var(--neutral-100);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(12, 32, 61, 0.04);
+    }
+
+    .identity-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .identity-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .swatch-grid.identity-swatches {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
     .input-group {
       display: flex;
       flex-direction: column;
@@ -435,6 +495,220 @@
             <div class="swatch-name">Primary 700</div>
             <div class="swatch-token">--primary-700</div>
             <div class="swatch-hex">#CE340D</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title-row">
+        <h2>身份配色体系</h2>
+        <span>Identity Palettes · Owner / Guarantor / Leader</span>
+      </div>
+      <p>三类角色分别建立一套身份色系，方便在列表、徽标、标签等位置快速区分视觉层级。</p>
+
+      <div class="identity-grid">
+        <div class="identity-card">
+          <div class="identity-header">
+            <span class="identity-dot" style="background: var(--owner-500);"></span>
+            <div>
+              <strong>新东家 · Growth Green</strong>
+              <div style="font-size:12px;color:var(--neutral-600);">传达积极成长、资产增值感受</div>
+            </div>
+          </div>
+          <div class="swatch-grid identity-swatches">
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--owner-50);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Owner 50</div>
+                <div class="swatch-token">--owner-50</div>
+                <div class="swatch-hex">#E8F8F0</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--owner-100);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Owner 100</div>
+                <div class="swatch-token">--owner-100</div>
+                <div class="swatch-hex">#C7EEDC</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--owner-200);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Owner 200</div>
+                <div class="swatch-token">--owner-200</div>
+                <div class="swatch-hex">#9BDEBF</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--owner-300);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Owner 300</div>
+                <div class="swatch-token">--owner-300</div>
+                <div class="swatch-hex">#6ECC9F</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--owner-400);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Owner 400</div>
+                <div class="swatch-token">--owner-400</div>
+                <div class="swatch-hex">#43B885</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--owner-500);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Owner 500</div>
+                <div class="swatch-token">--owner-500</div>
+                <div class="swatch-hex">#1E9F6D</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--owner-600);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Owner 600</div>
+                <div class="swatch-token">--owner-600</div>
+                <div class="swatch-hex">#0F875C</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="identity-card">
+          <div class="identity-header">
+            <span class="identity-dot" style="background: var(--guarantor-500);"></span>
+            <div>
+              <strong>担保人 · Trust Blue</strong>
+              <div style="font-size:12px;color:var(--neutral-600);">突出稳健、信用背书和规则意识</div>
+            </div>
+          </div>
+          <div class="swatch-grid identity-swatches">
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--guarantor-50);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Guarantor 50</div>
+                <div class="swatch-token">--guarantor-50</div>
+                <div class="swatch-hex">#E8F2FF</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--guarantor-100);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Guarantor 100</div>
+                <div class="swatch-token">--guarantor-100</div>
+                <div class="swatch-hex">#C7DEFF</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--guarantor-200);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Guarantor 200</div>
+                <div class="swatch-token">--guarantor-200</div>
+                <div class="swatch-hex">#98C4FF</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--guarantor-300);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Guarantor 300</div>
+                <div class="swatch-token">--guarantor-300</div>
+                <div class="swatch-hex">#6BA6FF</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--guarantor-400);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Guarantor 400</div>
+                <div class="swatch-token">--guarantor-400</div>
+                <div class="swatch-hex">#3C86F7</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--guarantor-500);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Guarantor 500</div>
+                <div class="swatch-token">--guarantor-500</div>
+                <div class="swatch-hex">#1C6DE4</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--guarantor-600);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Guarantor 600</div>
+                <div class="swatch-token">--guarantor-600</div>
+                <div class="swatch-hex">#0F51B8</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="identity-card">
+          <div class="identity-header">
+            <span class="identity-dot" style="background: var(--leader-500);"></span>
+            <div>
+              <strong>团队长 · Drive Red</strong>
+              <div style="font-size:12px;color:var(--neutral-600);">表现行动力、组织号召力与执行力</div>
+            </div>
+          </div>
+          <div class="swatch-grid identity-swatches">
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--leader-50);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Leader 50</div>
+                <div class="swatch-token">--leader-50</div>
+                <div class="swatch-hex">#FFEDEE</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--leader-100);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Leader 100</div>
+                <div class="swatch-token">--leader-100</div>
+                <div class="swatch-hex">#FFD0D3</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--leader-200);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Leader 200</div>
+                <div class="swatch-token">--leader-200</div>
+                <div class="swatch-hex">#FFA5AB</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--leader-300);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Leader 300</div>
+                <div class="swatch-token">--leader-300</div>
+                <div class="swatch-hex">#FF7A83</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--leader-400);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Leader 400</div>
+                <div class="swatch-token">--leader-400</div>
+                <div class="swatch-hex">#F45460</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--leader-500);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Leader 500</div>
+                <div class="swatch-token">--leader-500</div>
+                <div class="swatch-hex">#D9303C</div>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background: var(--leader-600);"></div>
+              <div class="swatch-body">
+                <div class="swatch-name">Leader 600</div>
+                <div class="swatch-token">--leader-600</div>
+                <div class="swatch-hex">#B11C27</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
