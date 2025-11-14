@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BV共赢计划 · 团队长首页</title>
+    <style>
+      :root {
+        --primary: #10b981;
+        --primary-dark: #0a8f63;
+        --primary-light: #ecfdf5;
+        --neutral-0: #ffffff;
+        --neutral-50: #f5f7fb;
+        --neutral-100: #e6eaf0;
+        --neutral-200: #d0d7e0;
+        --neutral-400: #8c96a3;
+        --neutral-600: #4a5565;
+        --neutral-900: #111827;
+        --warning: #f97316;
+        --error: #f04438;
+        --success: #22c55e;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "PingFang SC", "Segoe UI", system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--neutral-50);
+        color: var(--neutral-900);
+        line-height: 1.5;
+        font-size: 14px;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 24px 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      header {
+        background: radial-gradient(
+            circle at top right,
+            rgba(16, 185, 129, 0.25),
+            transparent
+          ),
+          linear-gradient(
+            135deg,
+            rgba(16, 185, 129, 0.12),
+            rgba(16, 185, 129, 0)
+          );
+        border-radius: 24px;
+        padding: 32px;
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: 24px;
+        border: 1px solid rgba(16, 185, 129, 0.1);
+        box-shadow: 0 24px 60px rgba(16, 185, 129, 0.12);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      header p {
+        margin: 12px 0 0;
+        color: var(--neutral-600);
+        font-size: 15px;
+        max-width: 520px;
+      }
+
+      .header-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: transform 0.14s ease, box-shadow 0.14s ease,
+          background 0.14s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        letter-spacing: 0.01em;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: var(--neutral-0);
+        box-shadow: 0 16px 36px rgba(16, 185, 129, 0.25);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        background: #12c792;
+      }
+
+      .btn-secondary {
+        background: var(--neutral-0);
+        color: var(--primary-dark);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary-light);
+      }
+
+      .grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card {
+        background: var(--neutral-0);
+        border-radius: 20px;
+        border: 1px solid var(--neutral-100);
+        padding: 20px;
+        box-shadow: 0 18px 48px rgba(15, 23, 42, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .card-title {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .card-subtitle {
+        margin: 4px 0 0;
+        color: var(--neutral-600);
+        font-size: 13px;
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--neutral-100);
+        margin: 0;
+      }
+
+      .metric-value {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--neutral-900);
+        margin: 0;
+      }
+
+      .metric-meta {
+        font-size: 12px;
+        color: var(--neutral-400);
+        margin-top: 6px;
+      }
+
+      .trend {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .trend-positive {
+        color: var(--success);
+      }
+
+      .trend-warning {
+        color: var(--warning);
+      }
+
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: var(--neutral-50);
+        border: 1px solid transparent;
+        transition: border-color 0.14s ease, background 0.14s ease;
+      }
+
+      .list-item:hover {
+        border-color: rgba(16, 185, 129, 0.25);
+        background: var(--neutral-0);
+      }
+
+      .list-item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .list-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .list-meta {
+        font-size: 12px;
+        color: var(--neutral-400);
+      }
+
+      .status-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--neutral-0);
+        border: 1px solid var(--neutral-100);
+        color: var(--neutral-600);
+        font-weight: 600;
+      }
+
+      .status-chip.success {
+        color: var(--success);
+        border-color: rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.08);
+      }
+
+      .status-chip.pending {
+        color: var(--warning);
+        border-color: rgba(249, 115, 22, 0.3);
+        background: rgba(249, 115, 22, 0.08);
+      }
+
+      .status-chip.risk {
+        color: var(--error);
+        border-color: rgba(240, 68, 56, 0.3);
+        background: rgba(240, 68, 56, 0.08);
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0 0 12px;
+      }
+
+      .info-block {
+        display: grid;
+        gap: 12px;
+        background: var(--neutral-50);
+        border-radius: 16px;
+        padding: 16px;
+        border: 1px dashed rgba(16, 185, 129, 0.2);
+      }
+
+      .info-block strong {
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 16px;
+      }
+
+      .timeline-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .timeline-index {
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        background: var(--primary);
+        color: var(--neutral-0);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+
+      .timeline-content h4 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .timeline-content p {
+        margin: 6px 0 0;
+        color: var(--neutral-600);
+        font-size: 13px;
+      }
+
+      footer {
+        margin-top: 12px;
+        padding: 16px 0 24px;
+        text-align: center;
+        color: var(--neutral-400);
+        font-size: 12px;
+      }
+
+      @media (max-width: 960px) {
+        header {
+          grid-template-columns: 1fr;
+        }
+        .grid-cols-3 {
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        .grid-cols-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding: 24px 16px 40px;
+        }
+        header {
+          padding: 24px;
+        }
+        header h1 {
+          font-size: 24px;
+        }
+        .card {
+          padding: 18px;
+        }
+        .metric-value {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div>
+          <span class="badge">团队长身份</span>
+          <h1>共赢计划 · 团队长运营主页</h1>
+          <p>
+            聚焦代打赏执行、担保额度协同及新东家履约支持。实时掌控业务进度、风险预警、收益构成，确保担保人、团队长、新东家在同一条链路中高效协作。
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="actions">
+            <button class="btn btn-primary">发起担保人协作</button>
+            <button class="btn btn-secondary">查看协助销售指引</button>
+          </div>
+          <div class="info-block">
+            <strong>今日提醒：</strong>
+            <span
+              >3 条待处理代打赏申请 · 1 条新东家投诉跟进 · 担保额度建议提升
+              20,000 CNV。</span
+            >
+          </div>
+        </div>
+      </header>
+
+      <section class="grid grid-cols-3">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">可支配 CNV</h2>
+              <p class="card-subtitle">团队长码库余额 · 直接影响快速兑付能力</p>
+            </div>
+            <span class="status-chip success">安全范围</span>
+          </div>
+          <hr class="divider" />
+          <div>
+            <p class="metric-value">62,500</p>
+            <div class="metric-meta">
+              <span class="trend trend-positive">+12.3% 本周新增</span> · 可覆盖
+              6 笔平均订单
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">担保额度占用</h2>
+              <p class="card-subtitle">
+                关联担保人累计敞口 · 建议控制在 80% 以下
+              </p>
+            </div>
+            <span class="status-chip pending">关注</span>
+          </div>
+          <hr class="divider" />
+          <div>
+            <p class="metric-value">78%</p>
+            <div class="metric-meta">
+              已使用 780,000 / 1,000,000 CNV · 待释放额度 60,000 CNV
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">协助销售履约</h2>
+              <p class="card-subtitle">近 30 日完成的 BV 协助销售订单数</p>
+            </div>
+            <span class="status-chip risk">紧急</span>
+          </div>
+          <hr class="divider" />
+          <div>
+            <p class="metric-value">9 / 15</p>
+            <div class="metric-meta">
+              <span class="trend trend-warning">-2 低于目标</span> ·
+              待完成订单需在 48 小时内反馈担保人
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid grid-cols-2">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">今日待办 · 代打赏流程</h2>
+              <p class="card-subtitle">
+                遵循“新东家申请 ➝ 团队长执行 ➝ 担保人监督”链路
+              </p>
+            </div>
+            <button class="btn btn-secondary" style="padding: 8px 14px">
+              查看全部
+            </button>
+          </div>
+          <hr class="divider" />
+          <div class="list">
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">订单 #DA-20251113-06</p>
+                <span class="list-meta"
+                  >新东家：林意柔 · 申请 12,000 CNV + 1% DOS · 倒计时
+                  02:15:33</span
+                >
+              </div>
+              <button class="btn btn-primary" style="padding: 8px 16px">
+                立即代打赏
+              </button>
+            </div>
+
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">订单 #DA-20251113-02</p>
+                <span class="list-meta"
+                  >已线下转账 8,800 CNV · 待新东家确认收款 · 提醒 1 次</span
+                >
+              </div>
+              <span class="status-chip pending">等待确认</span>
+            </div>
+
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">投诉单 #CP-20251112-01</p>
+                <span class="list-meta"
+                  >新东家：吴晨宇 · 48 小时未代打赏 · 客服介入中</span
+                >
+              </div>
+              <span class="status-chip risk">待补救</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">担保人协同</h2>
+              <p class="card-subtitle">可为订单选择担保人，合理分配担保额度</p>
+            </div>
+            <button class="btn btn-secondary" style="padding: 8px 14px">
+              管理列表
+            </button>
+          </div>
+          <hr class="divider" />
+          <div class="list">
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">担保人 陈星河</p>
+                <span class="list-meta"
+                  >担保额度 500,000 CNV · 已占用 320,000 CNV · 今日新增 2
+                  笔</span
+                >
+              </div>
+              <span class="status-chip success">流转正常</span>
+            </div>
+
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">担保人 王岚</p>
+                <span class="list-meta"
+                  >担保额度 300,000 CNV · 已占用 260,000 CNV · 建议释放 20,000
+                  CNV</span
+                >
+              </div>
+              <span class="status-chip pending">即将超限</span>
+            </div>
+
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">待审核：李牧</p>
+                <span class="list-meta"
+                  >申请额度 150,000 CNV · 等待担保人确认 · 关联 8 名新东家</span
+                >
+              </div>
+              <button class="btn btn-primary" style="padding: 8px 16px">
+                提醒审核
+              </button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">关键流程 · 团队长操作提示</h2>
+            <p class="card-subtitle">结合制度说明与运营机制，保持履约节奏</p>
+          </div>
+        </div>
+        <hr class="divider" />
+        <div class="timeline">
+          <div class="timeline-step">
+            <span class="timeline-index">1</span>
+            <div class="timeline-content">
+              <h4>接收代打赏申请</h4>
+              <p>
+                确认新东家支付 CNV + 1% DOS
+                后，检查关联担保人是否有足够担保额度，避免因为额度不足导致业务失败。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-index">2</span>
+            <div class="timeline-content">
+              <h4>执行代打赏并回填信息</h4>
+              <p>
+                使用自有或协同账号在平台完成代打赏，并及时在后台填写订单号。系统校验通过后，收益将按照
+                10% 担保人 / 30% 冻结 STC / 60% 团队长划拨。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-index">3</span>
+            <div class="timeline-content">
+              <h4>监控直接代打赏</h4>
+              <p>
+                当新东家直接代打赏时，确保码库拥有足够
+                CNV。若余额不足，需线下补转并提示新东家确认，避免客服介入或冻结
+                STC。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-index">4</span>
+            <div class="timeline-content">
+              <h4>协助销售与风险处置</h4>
+              <p>
+                持续跟进新东家 BV 协助销售承诺。若出现投诉，需在 24
+                小时内回应，并与担保人保持同步，防止扣罚及账号冻结。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-2">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">新东家团队概览</h2>
+              <p class="card-subtitle">支持多团队长绑定，灵活调配代打赏资源</p>
+            </div>
+            <button class="btn btn-secondary" style="padding: 8px 14px">
+              管理新东家
+            </button>
+          </div>
+          <hr class="divider" />
+          <div class="list">
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">核心团队 · 18 人</p>
+                <span class="list-meta"
+                  >平均剩余额度 6,400 CNV · 近 7 日协助销售完成率 92%</span
+                >
+              </div>
+              <span class="status-chip success">表现优异</span>
+            </div>
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">活跃孵化组 · 9 人</p>
+                <span class="list-meta"
+                  >有 3 人等待首次代打赏 · 建议安排专人指导流程</span
+                >
+              </div>
+              <span class="status-chip pending">需辅导</span>
+            </div>
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">风险关注组 · 4 人</p>
+                <span class="list-meta"
+                  >近 30 日投诉率 12% · 担保人已介入跟踪</span
+                >
+              </div>
+              <span class="status-chip risk">重点关注</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">制度速览 & 资源链接</h2>
+              <p class="card-subtitle">基于《BV共赢计划功能说明》等文档提炼</p>
+            </div>
+          </div>
+          <hr class="divider" />
+          <div class="list">
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">担保额度规则</p>
+                <span class="list-meta"
+                  >担保人需 3 星及以上 + ≥10,000 STC，可额外申请提高额度</span
+                >
+              </div>
+              <a class="btn btn-secondary" style="padding: 6px 12px" href="#"
+                >查看详情</a
+              >
+            </div>
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">团队长准入条件</p>
+                <span class="list-meta"
+                  >星级 ≥3，填写担保人账号并通过审核，原有新东家将自动转入</span
+                >
+              </div>
+              <a class="btn btn-secondary" style="padding: 6px 12px" href="#"
+                >快速复习</a
+              >
+            </div>
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">风险共担机制</p>
+                <span class="list-meta"
+                  >价格遵循官方指导价 · 智能合约 + 仲裁 · 垫付优先使用冻结
+                  STC</span
+                >
+              </div>
+              <a class="btn btn-secondary" style="padding: 6px 12px" href="#"
+                >阅读机制分析</a
+              >
+            </div>
+            <div class="list-item">
+              <div class="list-item-info">
+                <p class="list-title">多担保人协同</p>
+                <span class="list-meta"
+                  >团队长可绑定多个担保人，订单执行时灵活切换，避免单一瓶颈</span
+                >
+              </div>
+              <a class="btn btn-secondary" style="padding: 6px 12px" href="#"
+                >流程演练</a
+              >
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer>BV 共赢计划 · 团队长运营中心 · 版权所有 © 2025</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>BV共赢计划 Typography 字体规范 v1.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --neutral-0:   #FFFFFF;
+      --neutral-50:  #F7F9FB;
+      --neutral-100: #EEF1F4;
+      --neutral-200: #DADFE4;
+      --neutral-400: #A1A8AE;
+      --neutral-600: #6A737C;
+      --neutral-900: #1E252D;
+
+      --primary-500: #F36743;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: var(--neutral-0);
+      color: var(--neutral-900);
+      line-height: 1.5;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 8px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-top: 24px;
+    }
+
+    h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--neutral-600);
+      margin-top: 16px;
+      letter-spacing: 0.12em;
+    }
+
+    p {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: var(--neutral-600);
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: var(--neutral-400);
+    }
+
+    .section {
+      margin-bottom: 24px;
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--neutral-50);
+    }
+
+    .section-title-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .section-title-row span {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--neutral-400);
+      letter-spacing: 0.08em;
+    }
+
+    .type-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    .type-table thead {
+      background: var(--neutral-100);
+    }
+
+    .type-table th,
+    .type-table td {
+      padding: 8px 10px;
+      font-size: 11px;
+      text-align: left;
+      border-bottom: 1px solid var(--neutral-100);
+      color: var(--neutral-600);
+    }
+
+    .type-table th {
+      font-weight: 600;
+      color: var(--neutral-600);
+    }
+
+    .type-sample {
+      font-size: 14px;
+      color: var(--neutral-900);
+      font-weight: 500;
+    }
+
+    .sample-title-1 {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .sample-title-2 {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .sample-title-3 {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .sample-body {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .sample-caption {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .sample-tag {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      border-radius: 16px;
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-100);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(12, 32, 61, 0.04);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--neutral-100);
+      background: var(--neutral-0);
+      font-size: 11px;
+      padding: 4px 10px;
+      color: var(--neutral-600);
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary-500);
+    }
+
+    .token-code {
+      font-family: ui-monospace, Menlo, Monaco, Consolas, "PingFang SC", monospace;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(240, 244, 248, 0.9);
+      color: var(--neutral-600);
+    }
+
+    .list {
+      margin: 4px 0 0 18px;
+      padding: 0;
+      font-size: 12px;
+      color: var(--neutral-600);
+    }
+
+    .list li {
+      margin-bottom: 2px;
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: var(--neutral-400);
+      margin-top: 12px;
+    }
+
+    .accent {
+      color: var(--primary-500);
+      font-weight: 600;
+    }
+
+    .sample-heading-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-100);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1>BV共赢计划 Typography 字体规范</h1>
+      <div class="tagline">主字体：PingFang SC · 单页交付版 · v1.0</div>
+      <p>统一使用 <span class="accent">PingFang SC</span> 作为主中文界面字体 搭配系统英文字体 保持一致的金融 · 合伙 · 共赢气质。</p>
+    </header>
+
+    <section class="section">
+      <div class="section-title-row">
+        <h2>基础信息</h2>
+        <span>Base / Family / Language</span>
+      </div>
+      <p>所有界面文字 默认使用 PingFang SC 以保证在 iOS / Mac 上有最佳显示效果 其他系统使用相近系统字体回退。</p>
+      <ul class="list">
+        <li>主字体（中文）：<span class="accent">"PingFang SC"</span></li>
+        <li>回退字体（英数）：-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif</li>
+        <li>数字 可与正文同字号 以保证对齐和可读性</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="section-title-row">
+        <h2>文字层级一览</h2>
+        <span>Type Scale</span>
+      </div>
+
+      <table class="type-table">
+        <thead>
+          <tr>
+            <th>示例</th>
+            <th>样式名称</th>
+            <th>字号 / 行高</th>
+            <th>字重</th>
+            <th>典型用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="type-sample sample-title-1">BV共赢计划 第3期</td>
+            <td>Title 1 / 页面主标题</td>
+            <td>24px / 1.3</td>
+            <td>600</td>
+            <td>页面顶部主标题 大模块标题</td>
+          </tr>
+          <tr>
+            <td class="type-sample sample-title-2">我的累计收益</td>
+            <td>Title 2 / 模块标题</td>
+            <td>20px / 1.35</td>
+            <td>600</td>
+            <td>统计模块标题 弹窗标题</td>
+          </tr>
+          <tr>
+            <td class="type-sample sample-title-3">进行中的共赢项目</td>
+            <td>Title 3 / 小标题</td>
+            <td>16px / 1.4</td>
+            <td>600</td>
+            <td>卡片标题 分组标题 列表大类</td>
+          </tr>
+          <tr>
+            <td class="type-sample sample-body">本次出资金额可灵活调整 不锁死 不做复杂理财 只聚焦真实业务共赢。</td>
+            <td>Body / 正文</td>
+            <td>14px / 1.6</td>
+            <td>400</td>
+            <td>说明文案 列表内容 表单说明</td>
+          </tr>
+          <tr>
+            <td class="type-sample sample-caption">预计结算时间：2025 年 6 月 · 风险提示请仔细阅读详情页。</td>
+            <td>Caption / 辅助说明</td>
+            <td>12px / 1.5</td>
+            <td>400</td>
+            <td>辅助解释 文案补充 时间标签</td>
+          </tr>
+          <tr>
+            <td class="type-sample sample-tag">PROJECT TAG / 标签文字</td>
+            <td>Tag / 标签</td>
+            <td>11px / 1.4</td>
+            <td>500</td>
+            <td>状态标签 角标 小徽章</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <div class="section-title-row">
+        <h2>在真实界面中的示例</h2>
+        <span>Spec in Use</span>
+      </div>
+      <div class="columns">
+        <div class="card">
+          <h3>示例 · 项目详情界面</h3>
+          <div class="sample-heading-row">
+            <div class="sample-title-1">BV共赢计划 第3期</div>
+            <div class="sample-caption" style="color: var(--neutral-600);">预计周期 6 个月 · 目标总额 500,000 元</div>
+          </div>
+          <div>
+            <div class="sample-title-3" style="margin-top: 10px;">我的出资与预期</div>
+            <div class="sample-body" style="margin-top: 4px;">
+              当前出资 <span class="accent">20,000 元</span> · 预计收益区间将根据实际业务表现浮动 不承诺固定回报。
+            </div>
+            <div class="sample-caption" style="margin-top: 6px;">
+              以上数据仅作测算参考 请以结算公告为准。
+            </div>
+          </div>
+          <div>
+            <div class="sample-title-3" style="margin-top: 12px;">风险提示</div>
+            <div class="sample-caption">
+              本计划不对本金和收益做任何刚性保证 请在理解风险的前提下 谨慎参与。
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>使用建议</h3>
+          <p>建议在 Figma 中以文本样式（Text Styles）形式保存以下样式：</p>
+          <ul class="list">
+            <li><span class="token-code">T/Title 1</span> 24 · 600 · 1.3 · 页面主标题</li>
+            <li><span class="token-code">T/Title 2</span> 20 · 600 · 1.35 · 模块标题</li>
+            <li><span class="token-code">T/Title 3</span> 16 · 600 · 1.4 · 卡片标题</li>
+            <li><span class="token-code">T/Body</span> 14 · 400 · 1.6 · 正文</li>
+            <li><span class="token-code">T/Caption</span> 12 · 400 · 1.5 · 辅助文字</li>
+            <li><span class="token-code">T/Tag</span> 11 · 500 · 1.4 · 标签</li>
+          </ul>
+          <p style="margin-top: 8px;">
+            统一使用这些样式 可以保证：<br />
+            · 不同页面在阅读节奏上保持一致<br />
+            · 风险提示不放大 不制造恐慌 但始终可见<br />
+            · 出资金额与收益信息始终清晰 重点突出
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        本页可直接作为 BV共赢计划 的 Typography 规范 导入 Figma 时 建议一页一 Frame 形式整理 方便开发查阅。
+      </div>
+    </section>
+  </div>
+</body>
+</html>
