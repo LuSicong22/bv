@@ -966,6 +966,13 @@
           </div>
           <div class="modal-body">
             <div class="input-group">
+              <label class="input-label">选择本次申请的团队长</label>
+              <select class="input-field" id="applyLeader"></select>
+              <div class="support">
+                支持选择所有已绑定的团队长（包含未在首页展示的团队长）。
+              </div>
+            </div>
+            <div class="input-group">
               <label class="input-label">本次申请 CNV 数量</label>
               <input
                 class="input-field"
@@ -1421,9 +1428,48 @@
         document.getElementById(id).style.display = "none";
       }
 
-      document
-        .getElementById("openApply")
-        .addEventListener("click", () => openModal("applyModal"));
+      // 渲染申请弹窗中的团队长下拉框（使用 state.leaders 全量数据）
+      function renderApplyLeaderOptions() {
+        const select = document.getElementById("applyLeader");
+        if (!select) return;
+        const leaders = Array.isArray(state.leaders) ? state.leaders : [];
+        select.innerHTML = "";
+        if (!leaders.length) return;
+
+        leaders.forEach((ld, index) => {
+          const opt = document.createElement("option");
+          opt.value = ld.id || String(index);
+          opt.textContent = `${ld.account} · ${ld.name} · ${ld.phone}`;
+          if (ld.default) opt.selected = true;
+          select.appendChild(opt);
+        });
+
+        // 若没有标记默认团队长，则默认选中第一位
+        if (!select.value && leaders.length) {
+          select.value = leaders[0].id || "0";
+        }
+      }
+
+      // 点击「申请团队长代打赏」
+      const openApplyBtn = document.getElementById("openApply");
+      if (openApplyBtn) {
+        openApplyBtn.addEventListener("click", () => {
+          const leaders = Array.isArray(state.leaders) ? state.leaders : [];
+          // 未绑定团队长，提示先去绑定
+          if (!leaders.length) {
+            showToast("请先绑定团队长，再申请代打赏");
+            const rel = document.getElementById("leftCol");
+            if (rel && rel.scrollIntoView) {
+              rel.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+            return;
+          }
+          // 已绑定团队长：渲染下拉框（包含所有团队长），再打开弹窗
+          renderApplyLeaderOptions();
+          openModal("applyModal");
+        });
+      }
+
       document
         .getElementById("openDirect")
         .addEventListener("click", () => openModal("directModal"));
@@ -1446,6 +1492,12 @@
       });
 
       document.getElementById("submitApply").addEventListener("click", () => {
+        const leaderSelect = document.getElementById("applyLeader");
+        const leaderId = leaderSelect ? leaderSelect.value : "";
+        if (!leaderId) {
+          alert("请选择本次申请的团队长");
+          return;
+        }
         const v = Math.max(0, Number(applyCnv.value || 0));
         const need = v * 0.01;
         if (!v) {
