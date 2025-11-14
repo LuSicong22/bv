@@ -364,19 +364,11 @@
               </span>
             </div>
           </div>
-          <div class="grid">
-            <div class="col-6">
-              <div class="meta">上级团队长</div>
-              <div class="list-title">账号：<span id="leaderAccount">dj_tl_8899</span></div>
-              <div class="meta">姓名：王<span class="muted">**</span> · 手机：138<span class="muted">****</span>7788</div>
-              <div class="meta">状态：<span class="chip">已认证团队长</span></div>
-            </div>
-            <div class="col-6">
-              <div class="meta">团队长的担保人</div>
-              <div class="list-title">账号：<span id="guarantorAccount">dj_dbr_1234</span></div>
-              <div class="meta">姓名：李<span class="muted">**</span> · 手机：139<span class="muted">****</span>6622</div>
-              <div class="meta">状态：<span class="chip">担保额度充足</span></div>
-            </div>
+
+          <!-- 多团队长展示（动态渲染） -->
+          <div id="leadersContainer">
+            <div class="meta" id="leadersSummary">已绑定团队长 0 位</div>
+            <div class="list" id="leadersList"></div>
           </div>
 
           <!-- 未绑定提示块 -->
@@ -502,6 +494,29 @@
       heat: 128,
       heatUpdatedAt: '—',
       star: 3,  // 新东家星级（示例）
+      // 多团队长绑定（演示数据）
+      leaders: [
+        {
+          id: 'TL001', account: 'dj_tl_8899', name: '王**', phone: '138****7788', verified: true, default: true,
+          guarantors: [
+            { account: 'dj_dbr_1234', name: '李**', phone: '139****6622', status: '额度充足' },
+            { account: 'dj_dbr_5678', name: '陈**', phone: '137****4422', status: '额度一般' }
+          ]
+        },
+        {
+          id: 'TL002', account: 'dj_tl_6620', name: '赵**', phone: '136****9988', verified: true, default: false,
+          guarantors: [
+            { account: 'dj_dbr_7788', name: '周**', phone: '139****3311', status: '额度充足' }
+          ]
+        },
+        {
+          id: 'TL003', account: 'dj_tl_7031', name: '孙**', phone: '135****1234', verified: true, default: false,
+          guarantors: [
+            { account: 'dj_dbr_9900', name: '吴**', phone: '138****2244', status: '额度偏紧' },
+            { account: 'dj_dbr_9911', name: '郑**', phone: '137****8899', status: '额度充足' }
+          ]
+        }
+      ],
       // 最近记录（演示数据）。真实环境下由接口返回。
       history: [
         { kind: 'apply', cnv: 10000, status: 'pending', orderId: 'PK20251012-XX889', time: '2025-10-12 10:20' },
@@ -549,6 +564,85 @@
       if (starNowText) starNowText.textContent = `${state.star}星`;
       const heroStarText = document.getElementById('heroStarText');
       if (heroStarText) heroStarText.textContent = `${state.star}星`;
+    }
+
+    // 渲染“我的团队关系”：多团队长 + 担保人详情
+    function renderLeaders() {
+      const listEl = document.getElementById('leadersList');
+      const summaryEl = document.getElementById('leadersSummary');
+      const bindStateTag = document.getElementById('bindStateTag');
+      if (!listEl) return;
+      listEl.innerHTML = '';
+
+      const leaders = Array.isArray(state.leaders) ? state.leaders : [];
+      const count = leaders.length;
+
+      if (summaryEl) summaryEl.textContent = count ? `已绑定团队长 ${count} 位` : '未绑定团队长';
+      if (bindStateTag) {
+        bindStateTag.innerHTML = count
+          ? '<span class="pill-dot"></span> 已绑定 · ' + count + ' 位'
+          : '<span class="pill-dot" style="background:#94A3B8"></span> 未绑定';
+      }
+
+      const bindPanel = document.getElementById('bindPanel');
+      if (bindPanel) (count ? bindPanel.classList.add('hidden') : bindPanel.classList.remove('hidden'));
+
+      if (!count) return;
+
+      leaders.forEach((ld, i) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'list-item';
+        const defaultChip = ld.default ? '<span class="chip">默认</span>' : '';
+        const verifyChip = ld.verified
+          ? '<span class="chip">已认证团队长</span>'
+          : '<span class="chip" style="background:#FEF3C7;color:#92400E;border-color:#FDE68A;">待审核</span>';
+        const gCount = Array.isArray(ld.guarantors) ? ld.guarantors.length : 0;
+        wrap.innerHTML = `
+          <div>
+            <div class="list-title">团队长：${ld.account} · ${ld.name} · ${ld.phone}</div>
+            <div class="list-meta">${verifyChip} ${defaultChip} · 担保人 ${gCount} 名</div>
+          </div>
+          <div class="row">
+            <button class="btn btn-secondary" data-action="toggle" data-index="${i}" style="padding:6px 10px">详情</button>
+            ${ld.default ? '' : `<button class="btn btn-secondary" data-action="setDefault" data-index="${i}" style="padding:6px 10px">设为默认</button>`}
+          </div>
+        `;
+        listEl.appendChild(wrap);
+
+        const det = document.createElement('div');
+        det.id = `leader-details-${i}`;
+        det.className = 'list';
+        det.style.display = 'none';
+        det.style.marginTop = '8px';
+        (ld.guarantors || []).forEach(g => {
+          const gi = document.createElement('div');
+          gi.className = 'list-item';
+          gi.innerHTML = `
+            <div>
+              <div class="list-title">担保人：${g.account} · ${g.name} · ${g.phone}</div>
+              <div class="list-meta">状态：<span class="chip">${g.status || '—'}</span></div>
+            </div>
+          `;
+          det.appendChild(gi);
+        });
+        listEl.appendChild(det);
+      });
+
+      // 事件委托（防重复绑定，使用 onclick 赋值）
+      listEl.onclick = (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const idx = Number(btn.getAttribute('data-index') || '-1');
+        const act = btn.getAttribute('data-action');
+        if (act === 'toggle') {
+          const el = document.getElementById(`leader-details-${idx}`);
+          if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        } else if (act === 'setDefault') {
+          (state.leaders || []).forEach((L, j) => { L.default = j === idx; });
+          renderLeaders();
+          showToast('已设为默认团队长');
+        }
+      };
     }
 
     // 渲染首页最近两条记录 + 完整记录入口
@@ -744,6 +838,7 @@
 
     // 初始化
     initNumbers();
+    renderLeaders();
     renderHistory(2);
     loadRecentHistory();
   </script>
