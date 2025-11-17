@@ -30,6 +30,8 @@ export default function ApplyCaptainSubsidyPage() {
   const [selectedCaptainIndex, setSelectedCaptainIndex] = useState(0);
   const [selectedGuarantorIndex, setSelectedGuarantorIndex] = useState(0);
   const [amount, setAmount] = useState(10000);
+  const [captainOpen, setCaptainOpen] = useState(false);
+  const [guarantorOpen, setGuarantorOpen] = useState(false);
 
   const currentCaptain = captains[selectedCaptainIndex];
   const currentGuarantor = guarantors[selectedGuarantorIndex];
@@ -68,7 +70,7 @@ export default function ApplyCaptainSubsidyPage() {
   return (
     <div className="min-h-screen w-full bg-[#F6F7FB] flex items-center justify-center py-6 text-slate-900">
       {/* 模拟 App 容器 */}
-      <div className="w-[430px] h-[932px] relative flex items-center justify-center">
+      <div className="w-[390px] h-[932px] relative flex items-center justify-center">
         {/* 遮罩层 */}
         <div className="absolute inset-0 bg-black/30" />
 
@@ -86,60 +88,98 @@ export default function ApplyCaptainSubsidyPage() {
 
           {/* 关系选择条：团队长 + 担保人 + 担保额度 */}
           <div className="space-y-2">
-            {/* 团队长选择 */}
+            {/* 团队长选择（下拉） */}
             <div className="space-y-1">
               <label className="block text-[12px] text-slate-600">
                 选择团队长
               </label>
-              <div className="flex gap-2 overflow-x-auto no-scrollbar py-0.5">
-                {captains.map((c, index) => {
-                  const isActive = index === selectedCaptainIndex;
-                  return (
-                    <button
-                      key={c.id}
-                      onClick={() => setSelectedCaptainIndex(index)}
-                      className={`px-3 py-1.5 rounded-2xl border text-[11px] whitespace-nowrap flex items-center gap-1.5 ${
-                        isActive
-                          ? "bg-slate-900 text-white border-slate-900"
-                          : "bg-slate-50 text-slate-700 border-slate-200"
-                      }`}
-                    >
-                      <span className="inline-flex w-5 h-5 items-center justify-center rounded-full bg-white/10 text-[11px] border border-white/30">
-                        团
-                      </span>
-                      <span>{c.name}</span>
-                      <span className="text-[10px] opacity-80">{c.phone}</span>
-                    </button>
-                  );
-                })}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setCaptainOpen(!captainOpen)}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between text-[11px]"
+                >
+                  <div className="flex flex-col text-left">
+                    <span className="text-slate-900">
+                      {currentCaptain.name} · {currentCaptain.phone}
+                    </span>
+                    <span className="text-[10px] text-slate-400">
+                      已绑定团队长，点击更换
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-slate-500 ml-2">
+                    {captainOpen ? "收起" : "选择"}
+                  </span>
+                </button>
+                {captainOpen && (
+                  <div className="absolute z-10 mt-1 w-full max-h-40 overflow-auto rounded-xl border border-slate-200 bg-white shadow-lg text-[11px]">
+                    {captains.map((c, index) => (
+                      <button
+                        key={c.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedCaptainIndex(index);
+                          setCaptainOpen(false);
+                        }}
+                        className={`w-full px-3 py-2 flex items-center justify-between text-left hover:bg-slate-50 ${
+                          index === selectedCaptainIndex ? "bg-slate-50" : ""
+                        }`}
+                      >
+                        <span className="text-slate-900">
+                          {c.name} · {c.phone}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* 担保人选择 */}
+            {/* 担保人选择（下拉） */}
             <div className="space-y-1">
               <label className="block text-[12px] text-slate-600">
                 选择担保人
               </label>
-              <div className="flex gap-2 overflow-x-auto no-scrollbar py-0.5">
-                {guarantors.map((g, index) => {
-                  const isActive = index === selectedGuarantorIndex;
-                  return (
-                    <button
-                      key={g.id}
-                      onClick={() => setSelectedGuarantorIndex(index)}
-                      className={`px-3 py-1.5 rounded-2xl border text-[11px] whitespace-nowrap flex items-center gap-1.5 ${
-                        isActive
-                          ? "bg-slate-900 text-white border-slate-900"
-                          : "bg-slate-50 text-slate-700 border-slate-200"
-                      }`}
-                    >
-                      <span className="inline-flex w-5 h-5 items-center justify-center rounded-full bg-white/10 text-[11px] border border-white/30">
-                        保
-                      </span>
-                      <span>{g.name}</span>
-                    </button>
-                  );
-                })}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setGuarantorOpen(!guarantorOpen)}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between text-[11px]"
+                >
+                  <div className="flex flex-col text-left">
+                    <span className="text-slate-900">
+                      {currentGuarantor.name}
+                    </span>
+                    <span className="text-[10px] text-slate-400">
+                      已绑定担保人，点击更换
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-slate-500 ml-2">
+                    {guarantorOpen ? "收起" : "选择"}
+                  </span>
+                </button>
+                {guarantorOpen && (
+                  <div className="absolute z-10 mt-1 w-full max-h-40 overflow-auto rounded-xl border border-slate-200 bg-white shadow-lg text-[11px]">
+                    {guarantors.map((g, index) => (
+                      <button
+                        key={g.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedGuarantorIndex(index);
+                          setGuarantorOpen(false);
+                        }}
+                        className={`w-full px-3 py-2 flex items-center justify-between text-left hover:bg-slate-50 ${
+                          index === selectedGuarantorIndex ? "bg-slate-50" : ""
+                        }`}
+                      >
+                        <span className="text-slate-900">{g.name}</span>
+                        <span className="text-[10px] text-slate-400">
+                          剩余额度 {g.limit.toLocaleString()} CNV
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="flex items-center justify-between text-[10px] text-slate-500">
                 <span>当前团队长：{currentCaptain.name}</span>
@@ -186,7 +226,7 @@ export default function ApplyCaptainSubsidyPage() {
               </div>
               <button
                 onClick={() => setAmount(cnvBalance)}
-                className="px-3 py-2 rounded-xl bg-slate-900 text-white text-[11px] active:bg-black"
+                className="px-3 py-2 rounded-xl bg-[#059669] text-white text-[11px] active:bg-[#047857]"
               >
                 全部
               </button>
@@ -236,7 +276,7 @@ export default function ApplyCaptainSubsidyPage() {
             <button
               className={`flex-1 h-9 rounded-2xl text-[13px] font-semibold shadow-sm ${
                 isValid
-                  ? "bg-slate-900 text-white active:bg-black"
+                  ? "bg-[#059669] text-white active:bg-[#047857]"
                   : "bg-slate-200 text-slate-400"
               }`}
             >
