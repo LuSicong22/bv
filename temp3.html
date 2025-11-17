@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>申请团队长代打赏</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 使用 Tailwind CSS CDN 以支持类名样式 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen w-full bg-[#F6F7FB] flex items-center justify-center py-6 text-slate-900">
+    <div class="w-[390px] h-[844px] bg-[#F6F7FB] rounded-3xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
+      <header class="h-14 px-4 flex items-center gap-2 border-b border-slate-200 bg-white/90 backdrop-blur-sm">
+        <button class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-700 text-base">
+          ←
+        </button>
+        <div class="flex-1 text-center text-[20px] font-semibold tracking-wide">
+          申请团队长代打赏
+        </div>
+        <button class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-50 text-[12px] text-slate-400">
+          ?
+        </button>
+      </header>
+
+      <main class="flex-1 overflow-y-auto px-4 pt-3 pb-24 space-y-3">
+        <!-- 关系选择条：团队长 + 担保人 + 担保额度 -->
+        <section class="bg-white rounded-2xl p-3 shadow-sm space-y-2">
+          <!-- 团队长选择 -->
+          <div class="space-y-1">
+            <label class="block text-[12px] text-slate-600">
+              选择团队长
+            </label>
+            <div class="relative">
+              <button class="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between text-[11px]">
+                <div class="flex flex-col text-left">
+                  <span class="text-slate-900">
+                    李*华 · 15****2345
+                  </span>
+                  <span class="text-[12px] text-slate-400">
+                    已绑定团队长，点击更换
+                  </span>
+                </div>
+                <span class="text-[12px] text-slate-500 ml-2">
+                  选择
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 担保人选择 -->
+          <div class="space-y-1">
+            <label class="block text-[12px] text-slate-600">
+              选择担保人
+            </label>
+            <div class="relative">
+              <button class="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between text-[11px]">
+                <div class="flex flex-col text-left">
+                  <span class="text-slate-900">
+                    张*生
+                  </span>
+                  <span class="text-[12px] text-slate-400">
+                    已绑定担保人，点击更换
+                  </span>
+                </div>
+                <span class="text-[12px] text-slate-500 ml-2">
+                  选择
+                </span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between text-[12px] text-slate-500">
+              <span>当前团队长：李*华</span>
+              <span>担保人剩余担保额度 1,000,000 CNV</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 我的资产 -->
+        <section class="bg-white rounded-2xl p-3 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="text-[16px] font-semibold text-slate-900">
+              我的资产
+            </h2>
+            <span class="text-[12px] text-slate-400">
+              仅展示与本次申请相关
+            </span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="rounded-xl bg-slate-50 px-3 py-2">
+              <div class="text-slate-500">可用 CNV</div>
+              <div class="mt-0.5 text-sm font-semibold text-slate-900">
+                128,000
+              </div>
+            </div>
+            <div class="rounded-xl bg-slate-50 px-3 py-2 text-right">
+              <div class="text-slate-500">可用 DOS</div>
+              <div class="mt-0.5 text-sm font-semibold text-slate-900">
+                2,350
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 金额输入 + 汇总信息 -->
+        <section class="bg-white rounded-2xl p-3 shadow-sm space-y-2">
+          <!-- 金额输入 -->
+          <div class="space-y-1.5">
+            <label class="block text-[12px] text-slate-600">
+              申请代打赏额度（CNV）
+            </label>
+            <div class="flex items-center gap-2">
+              <div class="flex-1 flex items-center rounded-xl bg-white px-3 py-2 border border-slate-300">
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  value="10000"
+                  placeholder="请输入本次申请的 CNV 数量"
+                  class="flex-1 bg-transparent outline-none text-sm text-slate-900 placeholder:text-slate-400"
+                />
+                <span class="ml-2 text-[11px] text-slate-500">CNV</span>
+              </div>
+              <button class="px-3 py-2 rounded-xl bg-[#F36744] text-white text-[11px]">
+                全部
+              </button>
+            </div>
+            <div class="flex items-center justify-between text-[12px] text-slate-500">
+              <span>最小 10,000 CNV</span>
+              <span>手续费 1%（DOS）</span>
+            </div>
+          </div>
+
+          <!-- 汇总信息 -->
+          <div class="rounded-xl bg-slate-50 px-3 py-2 text-[11px] space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500">需支付 DOS 手续费</span>
+              <span class="font-semibold text-slate-900">
+                100 DOS
+              </span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500">本次将冻结资产</span>
+              <span class="text-slate-900">
+                10,000 CNV + 100 DOS
+              </span>
+            </div>
+          </div>
+
+          <!-- 简短提示 -->
+          <div class="space-y-1">
+            <p class="text-[12px] text-slate-500">
+              确认后将冻结对应 CNV 与 DOS，用于本次代打赏，业务完成后按规则结算。
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <!-- 底部提交条 -->
+      <footer class="h-20 px-4 py-2 border-t border-slate-200 bg-white/95 backdrop-blur-sm flex items-center justify-between gap-2">
+        <div class="flex-1 text-[11px]">
+          <div class="text-slate-500">本次申请</div>
+          <div class="text-sm font-semibold text-slate-900 mt-0.5">
+            10,000 CNV
+          </div>
+          <div class="text-[12px] text-slate-500 mt-0.5">
+            将冻结 10,000 CNV + 100 DOS
+          </div>
+        </div>
+        <button class="flex-1 h-11 rounded-2xl text-[14px] font-semibold shadow-sm bg-[#F36744] text-white">
+          确认申请
+        </button>
+      </footer>
+    </div>
+  </body>
+</html>
+

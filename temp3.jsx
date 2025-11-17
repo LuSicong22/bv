@@ -69,25 +69,25 @@ export default function ApplyCaptainSubsidyPage() {
 
   return (
     <div className="min-h-screen w-full bg-[#F6F7FB] flex items-center justify-center py-6 text-slate-900">
-      {/* 模拟 App 容器 */}
-      <div className="w-[390px] h-[932px] relative flex items-center justify-center">
-        {/* 遮罩层 */}
-        <div className="absolute inset-0 bg-black/30" />
-
-        {/* 中心弹窗 */}
-        <div className="relative w-[86%] rounded-2xl bg-white shadow-xl px-4 pt-3 pb-4 space-y-3">
-          {/* 标题行 */}
-          <div className="flex items-center justify-between mb-1">
-            <h1 className="text-[15px] font-semibold text-slate-900">
-              申请团队长代打赏
-            </h1>
-            <button className="w-6 h-6 flex items-center justify-center rounded-full bg-slate-100 text-[12px] text-slate-500">
-              ×
-            </button>
+      {/* 模拟 App 容器：整页而非弹窗 */}
+      <div className="w-[390px] h-[844px] bg-[#F6F7FB] rounded-3xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
+        {/* 顶部导航栏 */}
+        <header className="h-14 px-4 flex items-center gap-2 border-b border-slate-200 bg-white/90 backdrop-blur-sm">
+          <button className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 active:bg-slate-200 text-slate-700 text-base">
+            ←
+          </button>
+          <div className="flex-1 text-center text-[20px] font-semibold tracking-wide">
+            申请团队长代打赏
           </div>
+          <button className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-50 text-[12px] text-slate-400">
+            ?
+          </button>
+        </header>
 
+        {/* 主体内容，可滚动 */}
+        <main className="flex-1 overflow-y-auto px-4 pt-3 pb-24 space-y-3">
           {/* 关系选择条：团队长 + 担保人 + 担保额度 */}
-          <div className="space-y-2">
+          <section className="bg-white rounded-2xl p-3 shadow-sm space-y-2">
             {/* 团队长选择（下拉） */}
             <div className="space-y-1">
               <label className="block text-[12px] text-slate-600">
@@ -103,11 +103,11 @@ export default function ApplyCaptainSubsidyPage() {
                     <span className="text-slate-900">
                       {currentCaptain.name} · {currentCaptain.phone}
                     </span>
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[12px] text-slate-400">
                       已绑定团队长，点击更换
                     </span>
                   </div>
-                  <span className="text-[10px] text-slate-500 ml-2">
+                  <span className="text-[12px] text-slate-500 ml-2">
                     {captainOpen ? "收起" : "选择"}
                   </span>
                 </button>
@@ -150,11 +150,11 @@ export default function ApplyCaptainSubsidyPage() {
                     <span className="text-slate-900">
                       {currentGuarantor.name}
                     </span>
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[12px] text-slate-400">
                       已绑定担保人，点击更换
                     </span>
                   </div>
-                  <span className="text-[10px] text-slate-500 ml-2">
+                  <span className="text-[12px] text-slate-500 ml-2">
                     {guarantorOpen ? "收起" : "选择"}
                   </span>
                 </button>
@@ -173,7 +173,7 @@ export default function ApplyCaptainSubsidyPage() {
                         }`}
                       >
                         <span className="text-slate-900">{g.name}</span>
-                        <span className="text-[10px] text-slate-400">
+                        <span className="text-[12px] text-slate-400">
                           剩余额度 {g.limit.toLocaleString()} CNV
                         </span>
                       </button>
@@ -181,7 +181,7 @@ export default function ApplyCaptainSubsidyPage() {
                   </div>
                 )}
               </div>
-              <div className="flex items-center justify-between text-[10px] text-slate-500">
+              <div className="flex items-center justify-between text-[12px] text-slate-500">
                 <span>当前团队长：{currentCaptain.name}</span>
                 <span>
                   担保人剩余担保额度 {currentGuarantor.limit.toLocaleString()}{" "}
@@ -189,101 +189,121 @@ export default function ApplyCaptainSubsidyPage() {
                 </span>
               </div>
             </div>
-          </div>
+          </section>
 
           {/* 我的余额 */}
-          <div className="grid grid-cols-2 gap-2 text-[11px]">
-            <div className="rounded-xl bg-slate-50 px-3 py-2">
-              <div className="text-slate-500">可用 CNV</div>
-              <div className="mt-0.5 text-sm font-semibold text-slate-900">
-                {cnvBalance.toLocaleString()}
-              </div>
-            </div>
-            <div className="rounded-xl bg-slate-50 px-3 py-2 text-right">
-              <div className="text-slate-500">可用 DOS</div>
-              <div className="mt-0.5 text-sm font-semibold text-slate-900">
-                {dosBalance.toLocaleString()}
-              </div>
-            </div>
-          </div>
-
-          {/* 金额输入 */}
-          <div className="space-y-1.5">
-            <label className="block text-[12px] text-slate-600">
-              申请代打赏额度（CNV）
-            </label>
-            <div className="flex items-center gap-2">
-              <div className="flex-1 flex items-center rounded-xl bg-slate-50 px-3 py-2 border border-slate-200 focus-within:border-slate-400">
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  value={amount === 0 ? "" : amount}
-                  onChange={handleChange}
-                  placeholder="请输入本次申请的 CNV 数量"
-                  className="flex-1 bg-transparent outline-none text-sm text-slate-900 placeholder:text-slate-400"
-                />
-                <span className="ml-2 text-[11px] text-slate-500">CNV</span>
-              </div>
-              <button
-                onClick={() => setAmount(cnvBalance)}
-                className="px-3 py-2 rounded-xl bg-[#059669] text-white text-[11px] active:bg-[#047857]"
-              >
-                全部
-              </button>
-            </div>
-            <div className="flex items-center justify-between text-[10px] text-slate-500">
-              <span>最小 {minAmount.toLocaleString()} CNV</span>
-              <span>手续费 1%（DOS）</span>
-            </div>
-          </div>
-
-          {/* 汇总信息 */}
-          <div className="rounded-xl bg-slate-50 px-3 py-2 text-[11px] space-y-1">
-            <div className="flex items-center justify-between">
-              <span className="text-slate-500">需支付 DOS 手续费</span>
-              <span className="font-semibold text-slate-900">
-                {freezeDOS.toLocaleString()} DOS
+          <section className="bg-white rounded-2xl p-3 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-[16px] font-semibold text-slate-900">
+                我的资产
+              </h2>
+              <span className="text-[12px] text-slate-400">
+                仅展示与本次申请相关
               </span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-slate-500">本次将冻结资产</span>
-              <span className="text-slate-900">
-                {freezeCNV.toLocaleString()} CNV + {freezeDOS.toLocaleString()}{" "}
-                DOS
-              </span>
+            <div className="grid grid-cols-2 gap-2 text-[11px]">
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="text-slate-500">可用 CNV</div>
+                <div className="mt-0.5 text-sm font-semibold text-slate-900">
+                  {cnvBalance.toLocaleString()}
+                </div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2 text-right">
+                <div className="text-slate-500">可用 DOS</div>
+                <div className="mt-0.5 text-sm font-semibold text-slate-900">
+                  {dosBalance.toLocaleString()}
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
 
-          {/* 简短提示 + 报错 */}
-          <div className="space-y-1">
-            <p className="text-[10px] text-slate-500">
-              确认后将冻结对应 CNV 与
-              DOS，用于本次代打赏，业务完成后按规则结算。
-            </p>
-            {errorText && (
-              <p className="text-[10px] text-rose-600 flex items-center gap-1">
-                <span className="text-[12px]">!</span>
-                <span>{errorText}</span>
+          {/* 金额输入 + 汇总信息 */}
+          <section className="bg-white rounded-2xl p-3 shadow-sm space-y-2">
+            {/* 金额输入 */}
+            <div className="space-y-1.5">
+              <label className="block text-[12px] text-slate-600">
+                申请代打赏额度（CNV）
+              </label>
+              <div className="flex items-center gap-2">
+                <div className="flex-1 flex items-center rounded-xl bg-white px-3 py-2 border border-slate-300 focus-within:border-slate-400">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={amount === 0 ? "" : amount}
+                    onChange={handleChange}
+                    placeholder="请输入本次申请的 CNV 数量"
+                    className="flex-1 bg-transparent outline-none text-sm text-slate-900 placeholder:text-slate-400"
+                  />
+                  <span className="ml-2 text-[11px] text-slate-500">CNV</span>
+                </div>
+                <button
+                  onClick={() => setAmount(cnvBalance)}
+                  className="px-3 py-2 rounded-xl bg-[#F36744] text-white text-[11px] active:bg-[#DC4E27]"
+                >
+                  全部
+                </button>
+              </div>
+              <div className="flex items-center justify-between text-[12px] text-slate-500">
+                <span>最小 {minAmount.toLocaleString()} CNV</span>
+                <span>手续费 1%（DOS）</span>
+              </div>
+            </div>
+
+            {/* 汇总信息 */}
+            <div className="rounded-xl bg-slate-50 px-3 py-2 text-[11px] space-y-1">
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500">需支付 DOS 手续费</span>
+                <span className="font-semibold text-slate-900">
+                  {freezeDOS.toLocaleString()} DOS
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-slate-500">本次将冻结资产</span>
+                <span className="text-slate-900">
+                  {freezeCNV.toLocaleString()} CNV +{" "}
+                  {freezeDOS.toLocaleString()} DOS
+                </span>
+              </div>
+            </div>
+
+            {/* 简短提示 + 报错 */}
+            <div className="space-y-1">
+              <p className="text-[12px] text-slate-500">
+                确认后将冻结对应 CNV 与
+                DOS，用于本次代打赏，业务完成后按规则结算。
               </p>
-            )}
-          </div>
+              {errorText && (
+                <p className="text-[12px] text-rose-600 flex items-center gap-1">
+                  <span className="text-[12px]">!</span>
+                  <span>{errorText}</span>
+                </p>
+              )}
+            </div>
+          </section>
+        </main>
 
-          {/* 底部按钮 */}
-          <div className="flex items-center gap-2 pt-1">
-            <button className="flex-1 h-9 rounded-2xl bg-slate-100 text-[13px] text-slate-600">
-              取消
-            </button>
-            <button
-              className={`flex-1 h-9 rounded-2xl text-[13px] font-semibold shadow-sm ${
-                isValid
-                  ? "bg-[#059669] text-white active:bg-[#047857]"
-                  : "bg-slate-200 text-slate-400"
-              }`}
-            >
-              确认申请
-            </button>
+        {/* 底部提交条 */}
+        <footer className="h-20 px-4 py-2 border-t border-slate-200 bg-white/95 backdrop-blur-sm flex items-center justify-between gap-2">
+          <div className="flex-1 text-[11px]">
+            <div className="text-slate-500">本次申请</div>
+            <div className="text-sm font-semibold text-slate-900 mt-0.5">
+              {freezeCNV.toLocaleString()} CNV
+            </div>
+            <div className="text-[12px] text-slate-500 mt-0.5">
+              将冻结 {freezeCNV.toLocaleString()} CNV +{" "}
+              {freezeDOS.toLocaleString()} DOS
+            </div>
           </div>
-        </div>
+          <button
+            className={`flex-1 h-11 rounded-2xl text-[14px] font-semibold shadow-sm ${
+              isValid
+                ? "bg-[#F36744] text-white active:bg-[#DC4E27]"
+                : "bg-slate-200 text-slate-400"
+            }`}
+          >
+            确认申请
+          </button>
+        </footer>
       </div>
     </div>
   );

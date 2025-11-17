@@ -35,7 +35,7 @@
         cursor: pointer;
       }
       .btn-primary {
-        background: #10b981;
+        background: #f36744;
         color: #fff;
       }
       .btn-secondary {
@@ -62,9 +62,9 @@
         color: #1e252d;
       }
       .input-field:focus {
-        border-color: #6ee7b7;
-        box-shadow: 0 0 0 2px #ecfdf5;
-        background: #ecfdf5;
+        border-color: #fba893;
+        box-shadow: 0 0 0 2px #fff3f0;
+        background: #fff3f0;
       }
       .support {
         font-size: 12px;
@@ -73,16 +73,16 @@
       .modal-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(2, 10, 18, 0.35);
+        background: #f7fbfa;
         display: none;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         padding: 16px;
         z-index: 1000;
       }
       .modal {
-        width: 350px;
-        max-width: calc(100% - 32px);
+        width: 390px;
+        max-width: 100%;
         background: #fff;
         border-radius: 16px;
         border: 1px solid #eef1f4;
@@ -266,10 +266,10 @@
         ),
         radial-gradient(
           ellipse 129.38% 157.6% at 100% 0%,
-          rgba(16, 185, 129, 0.18) 0%,
-          rgba(16, 185, 129, 0) 55%
+          rgba(243, 103, 68, 0.18) 0%,
+          rgba(243, 103, 68, 0) 55%
         ),
-        linear-gradient(141deg, #10b981 0%, #059669 100%);
+        linear-gradient(141deg, #f36744 0%, #f04419 100%);
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
       overflow: hidden;
       border-radius: 24px;
@@ -1386,7 +1386,7 @@
           left: 0px;
           top: 0px;
           position: absolute;
-          background: linear-gradient(90deg, #34d399 0%, #059669 100%);
+          background: linear-gradient(90deg, #f7896e 0%, #f04419 100%);
         "
       ></div>
     </div>
@@ -2578,7 +2578,7 @@
         justify-content: center;
         display: flex;
         flex-direction: column;
-        color: var(--color-spring-green-30, #059669);
+        color: var(--color-spring-green-30, #f36744);
         font-size: 11px;
         font-family: PingFang SC;
         font-weight: 400;
@@ -2796,7 +2796,7 @@
         left: 13px;
         top: 27px;
         position: absolute;
-        background: var(--color-grey-96, #ecfdf5);
+        background: #fff3f0;
         border-radius: 999px;
       "
     >
@@ -2811,7 +2811,7 @@
           justify-content: center;
           display: flex;
           flex-direction: column;
-          color: var(--color-spring-green-30, #059669);
+          color: var(--color-spring-green-30, #f36744);
           font-size: 11px;
           font-family: PingFang SC;
           font-weight: 400;
@@ -2913,103 +2913,7 @@
   </div>
 </div>
 
-    <!-- 模态：申请团队长代打赏 -->
-    <div class="modal-backdrop" id="applyModal">
-      <div
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="applyTitle"
-      >
-        <div class="modal-header">
-          <div class="modal-title" id="applyTitle">申请团队长代打赏</div>
-          <button class="close-btn" data-close="applyModal" aria-label="关闭">
-            ×
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="input-group">
-            <label class="input-label">选择团队长</label>
-            <select class="input-field" id="applyLeader"></select>
-            <div class="support">请选择本次申请绑定的团队长。</div>
-          </div>
-          <div class="input-group">
-            <label class="input-label">选择担保人</label>
-            <select class="input-field" id="applyGuarantor"></select>
-            <div class="support">
-              担保人列表会显示对应的剩余担保额度。
-            </div>
-          </div>
-          <div class="meta" id="guarantorQuotaText">
-            当前团队长：— · 担保人剩余担保额度：—
-          </div>
-          <div class="row stat-row">
-            <div class="stat-box">
-              <div class="stat-label">可用 CNV</div>
-              <div class="stat-value" id="availableCnv">128,000</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-label">可用 DOS</div>
-              <div class="stat-value" id="availableDos">2,350</div>
-            </div>
-          </div>
-          <div class="input-group">
-            <label class="input-label">申请代打赏额度（CNV）</label>
-            <div class="field-inline">
-              <input
-                class="input-field field-inline-input"
-                id="applyCnv"
-                type="number"
-                min="0"
-                step="1"
-                placeholder="例如 10000"
-              />
-              <span class="field-suffix">CNV</span>
-              <button
-                type="button"
-                class="field-fill-btn"
-                id="fillAllCnvBtn"
-              >
-                全部
-              </button>
-            </div>
-            <div class="row" style="justify-content: space-between">
-              <div class="support">最小 10,000 CNV</div>
-              <div class="support">手续费 1%（DOS）</div>
-            </div>
-          </div>
-          <div class="summary-box">
-            <div class="meta">
-              需支付 DOS 手续费 <b id="applyDosNeed">0</b> DOS
-            </div>
-            <div class="meta">
-              本次将冻结资产
-              <b id="freezeCnv">0</b> CNV + <b id="freezeDos">0</b> DOS
-            </div>
-            <div class="support">
-              确认后将冻结相应 CNV 与 DOS，用于本次代打赏，业务完成后按规则结算分配。
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-close="applyModal">
-            取消
-          </button>
-          <button class="btn btn-primary" id="submitApply">提交申请</button>
-        </div>
-      </div>
-    </div>
-
     <script>
-      function openModal(id) {
-        var el = document.getElementById(id);
-        if (el) el.style.display = "flex";
-      }
-      function closeModal(id) {
-        var el = document.getElementById(id);
-        if (el) el.style.display = "none";
-      }
-
       (function () {
         // 简单演示数据：团队长和担保人列表（含剩余担保额度）
         var leaders = [
@@ -3170,7 +3074,7 @@
         if (availableCnvEl) availableCnvEl.textContent = fmt(balances.cnv);
         if (availableDosEl) availableDosEl.textContent = fmt(balances.dos);
 
-        // 绑定申请按钮（整块绿色卡片）
+        // 绑定申请按钮（整块卡片，跳转到整页）
         var applyText = document.querySelector(
           '[data-layer="申请团队长代打赏"]'
         );
@@ -3178,24 +3082,9 @@
           var applyCard = applyText.closest(".Button") || applyText;
           applyCard.style.cursor = "pointer";
           applyCard.addEventListener("click", function () {
-            if (!leaders.length) {
-              alert("当前暂无可选择的团队长，请先完成绑定。");
-              return;
-            }
-            renderLeaderOptions();
-            openModal("applyModal");
+            window.location.href = "apply_team_leader.html";
           });
         }
-
-        // 关闭按钮
-        Array.prototype.forEach.call(
-          document.querySelectorAll("[data-close]"),
-          function (btn) {
-            btn.addEventListener("click", function () {
-              closeModal(btn.getAttribute("data-close"));
-            });
-          }
-        );
 
         // 计算 DOS
         var applyCnv = document.getElementById("applyCnv");
