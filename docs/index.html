@@ -17,8 +17,8 @@
         margin: 0;
         font-family: "Inter", "SF Pro Display", "PingFang SC", system-ui, -apple-system,
           sans-serif;
-        background: radial-gradient(circle at 20% 20%, #f0f8ff 0, #f5f7fb 35%, #f9fbff 65%);
-        color: #0f172a;
+        background: #1e1e1e;
+        color: #e5e7eb;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -30,9 +30,9 @@
         justify-content: space-between;
         gap: 12px;
         align-items: center;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(15, 23, 42, 0.96);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid #111827;
         position: sticky;
         top: 0;
         z-index: 2;
@@ -48,7 +48,7 @@
         width: 36px;
         height: 36px;
         border-radius: 12px;
-        background: linear-gradient(135deg, #ff8b5f, #ff6b6b);
+        background: linear-gradient(135deg, #f97316, #f97316);
         display: grid;
         place-items: center;
         font-weight: 700;
@@ -58,7 +58,7 @@
 
       .subtitle {
         margin: 2px 0 0;
-        color: #475569;
+        color: #9ca3af;
         font-size: 13px;
       }
 
@@ -66,7 +66,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        color: #475569;
+        color: #9ca3af;
         font-size: 14px;
       }
 
@@ -78,14 +78,14 @@
 
       .range {
         width: 140px;
-        accent-color: #ff6b6b;
+        accent-color: #f97316;
       }
 
       .badge {
         padding: 6px 10px;
         border-radius: 999px;
-        background: #0f172a;
-        color: #f8fafc;
+        background: #111827;
+        color: #e5e7eb;
         font-weight: 600;
         font-size: 13px;
         display: inline-flex;
@@ -103,10 +103,9 @@
         position: absolute;
         inset: 0;
         cursor: grab;
-        background-image: linear-gradient(#e2e8f0 1px, transparent 1px),
-          linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
-        background-size: 32px 32px;
-        background-position: -1px -1px;
+        background-color: #1e1e1e;
+        background-image: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06) 0, transparent 55%),
+          radial-gradient(circle at 100% 100%, rgba(148, 163, 184, 0.35) 0, transparent 60%);
       }
 
       .workspace.panning {
@@ -118,52 +117,74 @@
         top: 50%;
         left: 50%;
         transform-origin: 0 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-        gap: 32px;
-      }
-
-      .page-card {
-        position: relative;
-        padding: 16px 16px 20px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.92);
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
-        transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
-      }
-
-      .page-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
-        border-color: #cbd5e1;
-      }
-
-      .page-header {
         display: flex;
-        justify-content: space-between;
-        margin-bottom: 12px;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .identity-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .identity-label {
+        min-width: 160px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding-top: 6px;
+        color: #d1d5db;
+        font-size: 13px;
+      }
+
+      .identity-label-main {
+        display: inline-flex;
         align-items: center;
+        gap: 8px;
+        font-weight: 600;
       }
 
-      .page-title {
-        margin: 0;
-        font-size: 16px;
-        color: #0f172a;
+      .identity-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
       }
 
-      .page-path {
-        margin: 0;
+      .identity-label-sub {
         font-size: 12px;
-        color: #64748b;
+        color: #9ca3af;
+      }
+
+      .identity-pages {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .page-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+      }
+
+      .page-label {
+        font-size: 12px;
+        color: #9ca3af;
+      }
+
+      .page-label strong {
+        color: #e5e7eb;
       }
 
       .preview-shell {
         position: relative;
         border-radius: 12px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #111827;
         overflow: hidden;
-        background: #f8fafc;
+        background: #020617;
       }
 
       .preview-frame {
@@ -174,31 +195,6 @@
         background: white;
       }
 
-      .open-button {
-        position: absolute;
-        right: 12px;
-        top: 12px;
-        padding: 8px 12px;
-        background: #0f172a;
-        color: #f8fafc;
-        border: none;
-        border-radius: 10px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 150ms ease, box-shadow 150ms ease;
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.3);
-      }
-
-      .open-button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.25);
-      }
-
-      .meta-hint {
-        font-size: 13px;
-        color: #475569;
-      }
-
       .footer-tip {
         position: absolute;
         right: 16px;
@@ -207,12 +203,12 @@
         align-items: center;
         gap: 8px;
         padding: 10px 12px;
-        background: rgba(15, 23, 42, 0.75);
-        color: #e2e8f0;
+        background: rgba(15, 23, 42, 0.9);
+        color: #e5e7eb;
         font-size: 13px;
         border-radius: 10px;
         backdrop-filter: blur(12px);
-        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       }
 
       .footer-tip strong {
@@ -226,7 +222,7 @@
         <div class="title-mark">BV</div>
         <div>
           <h1 style="margin: 0; font-size: 20px;">全局原型预览</h1>
-          <p class="subtitle">拖拽空白区域可移动视图，滚轮缩放，点击任意缩略图跳转到对应页面</p>
+          <p class="subtitle">滚轮上下滚动视图，按住 Command + 滚轮缩放；按住鼠标右键拖拽平移，点击任意缩略图跳转到对应页面</p>
         </div>
       </div>
       <div class="controls">
@@ -242,26 +238,56 @@
       <div class="workspace" id="workspace">
         <div class="board" id="board"></div>
         <div class="footer-tip">
-          <span>按 <strong>Space</strong> 并拖拽可随时平移</span>
-          <span>滚轮缩放</span>
+          <span>右键拖拽平移视图</span>
+          <span>Command/Ctrl + 滚轮缩放</span>
         </div>
       </div>
     </main>
 
     <script>
-      const pages = [
-        { title: "业主主页", path: "new_owner.html", width: 390, height: 844 },
-        { title: "申请组长", path: "apply_team_leader.html", width: 390, height: 1000 },
-        { title: "申请完成", path: "apply_team_leader_confirmation.html", width: 390, height: 880 },
-        { title: "担保人首页", path: "guarantor_home.html", width: 390, height: 900 },
-        { title: "身份选择入口", path: "identity_selection_entry.html", width: 390, height: 880 },
-        { title: "组长首页", path: "team_leader_home.html", width: 390, height: 900 },
-        { title: "组长身份首页", path: "team_leader_identity_home.html", width: 390, height: 900 },
-        { title: "组长列表", path: "team_leader_list.html", width: 390, height: 900 },
-        { title: "首页备份", path: "index_backup.html", width: 390, height: 844 },
-        { title: "设计规范 - 色彩", path: "../product_requirements/bv-color-system.html", width: 1280, height: 720 },
-        { title: "设计规范 - 字体", path: "../product_requirements/bv-typography.html", width: 1280, height: 720 },
-        { title: "临时方案 temp3", path: "../temp3.html", width: 1280, height: 900 }
+      const groups = [
+        {
+          id: "owner",
+          name: "新东家（业主）",
+          description: "移动端主流程：身份选择入口、业主主页、申请团队长",
+          color: "#f97316",
+          pages: [
+            { title: "身份选择入口", path: "identity_selection_entry.html", width: 390, height: 880 },
+            { title: "业主主页", path: "new_owner.html", width: 390, height: 1045 },
+            { title: "申请组长", path: "apply_team_leader.html", width: 390, height: 1000 },
+            { title: "申请完成", path: "apply_team_leader_confirmation.html", width: 390, height: 880 }
+          ]
+        },
+        {
+          id: "leader",
+          name: "团队长视角",
+          description: "团队长首页 / 身份首页 / 团队长列表",
+          color: "#10b981",
+          pages: [
+            { title: "组长首页", path: "team_leader_home.html", width: 1280, height: 900 },
+            { title: "组长身份首页", path: "team_leader_identity_home.html", width: 1280, height: 900 },
+            { title: "组长列表", path: "team_leader_list.html", width: 1280, height: 900 }
+          ]
+        },
+        {
+          id: "guarantor",
+          name: "担保人视角",
+          description: "担保人首页及配额总览",
+          color: "#1c6de4",
+          pages: [{ title: "担保人首页", path: "guarantor_home.html", width: 1280, height: 900 }]
+        },
+        {
+          id: "misc",
+          name: "其它页面",
+          description: "首页备份、设计规范与临时方案等",
+          color: "#9ca3af",
+          pages: [
+            { title: "首页备份", path: "index_backup.html", width: 390, height: 844 },
+            { title: "设计规范 - 色彩", path: "../product_requirements/bv-color-system.html", width: 1280, height: 720 },
+            { title: "设计规范 - 字体", path: "../product_requirements/bv-typography.html", width: 1280, height: 720 },
+            { title: "临时方案 temp3", path: "../temp3.html", width: 1280, height: 900 }
+          ]
+        }
       ];
 
       const board = document.getElementById("board");
@@ -271,26 +297,12 @@
       const pageCount = document.getElementById("page-count");
       const previewScale = 0.35;
 
-      let translate = { x: -240, y: -120 };
+      const allPages = groups.flatMap((group) => group.pages);
+
+      let translate = { x: -420, y: -260 };
       let scale = zoomRange.value / 100;
       let isPanning = false;
       let startOffset = { x: 0, y: 0 };
-      let spacePressed = false;
-
-      window.addEventListener("keydown", (e) => {
-        if (e.code === "Space") {
-          spacePressed = true;
-          workspace.classList.add("panning");
-          e.preventDefault();
-        }
-      });
-
-      window.addEventListener("keyup", (e) => {
-        if (e.code === "Space") {
-          spacePressed = false;
-          workspace.classList.remove("panning");
-        }
-      });
 
       const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 
@@ -300,51 +312,70 @@
       }
 
       function renderPages() {
-        pageCount.textContent = `${pages.length} 个页面`;
+        pageCount.textContent = `${allPages.length} 个页面`;
 
-        pages.forEach((page) => {
-          const card = document.createElement("article");
-          card.className = "page-card";
+        groups.forEach((group) => {
+          const row = document.createElement("section");
+          row.className = "identity-row";
 
-          const header = document.createElement("div");
-          header.className = "page-header";
-          const title = document.createElement("h3");
-          title.className = "page-title";
-          title.textContent = page.title;
-          const meta = document.createElement("p");
-          meta.className = "page-path";
-          meta.textContent = page.path;
-          header.append(title, meta);
+          const label = document.createElement("div");
+          label.className = "identity-label";
 
-          const wrapper = document.createElement("div");
-          wrapper.className = "preview-shell";
-          wrapper.style.width = `${page.width * previewScale}px`;
-          wrapper.style.height = `${page.height * previewScale}px`;
+          const labelMain = document.createElement("div");
+          labelMain.className = "identity-label-main";
 
-          const iframe = document.createElement("iframe");
-          iframe.className = "preview-frame";
-          iframe.loading = "lazy";
-          iframe.src = page.path;
-          iframe.style.width = `${page.width}px`;
-          iframe.style.height = `${page.height}px`;
-          iframe.style.transform = `scale(${previewScale})`;
+          const dot = document.createElement("span");
+          dot.className = "identity-dot";
+          dot.style.backgroundColor = group.color;
 
-          const button = document.createElement("button");
-          button.className = "open-button";
-          button.type = "button";
-          button.textContent = "打开页面";
-          button.addEventListener("click", (e) => {
-            e.stopPropagation();
-            window.location.href = page.path;
+          const name = document.createElement("span");
+          name.textContent = group.name;
+
+          labelMain.append(dot, name);
+
+          const labelSub = document.createElement("div");
+          labelSub.className = "identity-label-sub";
+          labelSub.textContent = group.description;
+
+          label.append(labelMain, labelSub);
+
+          const pagesContainer = document.createElement("div");
+          pagesContainer.className = "identity-pages";
+
+          group.pages.forEach((page) => {
+            const item = document.createElement("article");
+            item.className = "page-item";
+
+            const label = document.createElement("div");
+            label.className = "page-label";
+            const fileName = page.path.split("/").pop();
+            label.innerHTML = `<strong>${page.title}</strong>（${fileName}）`;
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "preview-shell";
+            wrapper.style.width = `${page.width * previewScale}px`;
+            wrapper.style.height = `${page.height * previewScale}px`;
+
+            const iframe = document.createElement("iframe");
+            iframe.className = "preview-frame";
+            iframe.loading = "lazy";
+            iframe.src = page.path;
+            iframe.style.width = `${page.width}px`;
+            iframe.style.height = `${page.height}px`;
+            iframe.style.transform = `scale(${previewScale})`;
+            iframe.style.pointerEvents = "none";
+
+            wrapper.appendChild(iframe);
+            item.append(label, wrapper);
+            item.addEventListener("click", () => {
+              window.location.href = page.path;
+            });
+
+            pagesContainer.appendChild(item);
           });
 
-          wrapper.appendChild(iframe);
-          card.append(header, wrapper, button);
-          card.addEventListener("click", () => {
-            window.location.href = page.path;
-          });
-
-          board.appendChild(card);
+          row.append(label, pagesContainer);
+          board.appendChild(row);
         });
       }
 
@@ -357,8 +388,7 @@
       });
 
       workspace.addEventListener("mousedown", (e) => {
-        const onCard = !!e.target.closest(".page-card");
-        if (onCard && !spacePressed) return;
+        if (e.button !== 2) return;
         isPanning = true;
         workspace.classList.add("panning");
         startOffset = { x: e.clientX - translate.x, y: e.clientY - translate.y };
@@ -373,26 +403,38 @@
 
       window.addEventListener("mouseup", () => {
         isPanning = false;
-        if (!spacePressed) workspace.classList.remove("panning");
+        workspace.classList.remove("panning");
+      });
+
+      workspace.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
       });
 
       workspace.addEventListener(
         "wheel",
         (e) => {
-          e.preventDefault();
-          const rect = workspace.getBoundingClientRect();
-          const offsetX = e.clientX - rect.left;
-          const offsetY = e.clientY - rect.top;
-          const delta = clamp(-e.deltaY * 0.0012, -0.4, 0.4);
-          const newScale = clamp(scale * (1 + delta), 0.25, 1.8);
-          const scaleRatio = newScale / scale;
+          const isZoom = e.metaKey || e.ctrlKey;
+          if (isZoom) {
+            e.preventDefault();
+            const rect = workspace.getBoundingClientRect();
+            const offsetX = e.clientX - rect.left;
+            const offsetY = e.clientY - rect.top;
+            const delta = clamp(-e.deltaY * 0.0012, -0.4, 0.4);
+            const newScale = clamp(scale * (1 + delta), 0.25, 1.8);
+            const scaleRatio = newScale / scale;
 
-          translate.x = offsetX - (offsetX - translate.x) * scaleRatio;
-          translate.y = offsetY - (offsetY - translate.y) * scaleRatio;
+            translate.x = offsetX - (offsetX - translate.x) * scaleRatio;
+            translate.y = offsetY - (offsetY - translate.y) * scaleRatio;
 
-          scale = newScale;
-          zoomRange.value = Math.round(scale * 100);
-          applyTransform();
+            scale = newScale;
+            zoomRange.value = Math.round(scale * 100);
+            applyTransform();
+          } else {
+            e.preventDefault();
+            translate.x -= e.deltaX;
+            translate.y -= e.deltaY;
+            applyTransform();
+          }
         },
         { passive: false }
       );

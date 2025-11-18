@@ -8,11 +8,34 @@
     />
     <title>BV共赢计划</title>
     <style>
+      :root {
+        /* 中性色 · 对齐配色系统 v1.0 */
+        --neutral-0: #ffffff;
+        --neutral-50: #f7f9fb;
+        --neutral-100: #eef1f4;
+        --neutral-200: #dadfe4;
+        --neutral-400: #a1a8ae;
+        --neutral-600: #6a737c;
+        --neutral-900: #1e252d;
+
+        /* 身份色：新东家（橙色系） */
+        --owner-50: #fff3f0;
+        --owner-100: #fee3dc;
+        --owner-200: #fdc7ba;
+        --owner-300: #fba893;
+        --owner-400: #f7896e;
+        --owner-500: #f36744;
+        --owner-600: #f04419;
+      }
+
       body {
         margin: 0;
         background: #f7fbfa;
         display: flex;
         justify-content: center;
+        font-family: "PingFang SC", -apple-system, BlinkMacSystemFont,
+          "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+        color: var(--neutral-900);
       }
       .row {
         display: flex;
@@ -22,7 +45,7 @@
       }
       .meta {
         font-size: 12px;
-        color: #6a737c;
+        color: var(--neutral-600);
       }
       .btn {
         display: inline-flex;
@@ -35,13 +58,13 @@
         cursor: pointer;
       }
       .btn-primary {
-        background: #f36744;
-        color: #fff;
+        background: var(--owner-500);
+        color: var(--neutral-0);
       }
       .btn-secondary {
-        background: #fff;
-        color: #1e252d;
-        border: 1px solid #e5e7eb;
+        background: var(--neutral-0);
+        color: var(--neutral-900);
+        border: 1px solid var(--neutral-100);
       }
       .input-group {
         display: flex;
@@ -50,25 +73,25 @@
       }
       .input-label {
         font-size: 12px;
-        color: #6a737c;
+        color: var(--neutral-600);
       }
       .input-field {
         border-radius: 12px;
-        border: 1px solid #dadfe4;
-        background: #fff;
+        border: 1px solid var(--neutral-200);
+        background: var(--neutral-0);
         font-size: 14px;
         padding: 10px 12px;
         outline: none;
-        color: #1e252d;
+        color: var(--neutral-900);
       }
       .input-field:focus {
-        border-color: #fba893;
-        box-shadow: 0 0 0 2px #fff3f0;
-        background: #fff3f0;
+        border-color: var(--owner-300);
+        box-shadow: 0 0 0 2px var(--owner-50);
+        background: var(--owner-50);
       }
       .support {
         font-size: 12px;
-        color: #a1a8ae;
+        color: var(--neutral-400);
       }
       .modal-backdrop {
         position: fixed;
@@ -83,15 +106,15 @@
       .modal {
         width: 390px;
         max-width: 100%;
-        background: #fff;
+        background: var(--neutral-0);
         border-radius: 16px;
-        border: 1px solid #eef1f4;
+        border: 1px solid var(--neutral-100);
         box-shadow: 0 12px 36px rgba(2, 10, 18, 0.25);
         overflow: hidden;
       }
       .modal-header {
         padding: 12px 14px;
-        border-bottom: 1px solid #eef1f4;
+        border-bottom: 1px solid var(--neutral-100);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -108,7 +131,7 @@
       }
       .modal-footer {
         padding: 12px 14px;
-        border-top: 1px solid #eef1f4;
+        border-top: 1px solid var(--neutral-100);
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -116,7 +139,7 @@
       }
       .close-btn {
         background: transparent;
-        color: #6a737c;
+        color: var(--neutral-600);
         border: none;
         font-size: 20px;
         cursor: pointer;
@@ -128,13 +151,13 @@
       }
       .stat-box {
         flex: 1;
-        background: #f7f9fb;
+        background: var(--neutral-50);
         border-radius: 12px;
         padding: 8px 12px;
       }
       .stat-label {
         font-size: 11px;
-        color: #6a737c;
+        color: var(--neutral-600);
         margin-bottom: 4px;
       }
       .stat-value {
@@ -152,14 +175,14 @@
       }
       .field-suffix {
         font-size: 12px;
-        color: #6a737c;
+        color: var(--neutral-600);
       }
       .field-fill-btn {
         padding: 6px 12px;
         border-radius: 999px;
         border: none;
         background: #111827;
-        color: #fff;
+        color: var(--neutral-0);
         font-size: 12px;
         cursor: pointer;
       }
@@ -167,7 +190,7 @@
         margin-top: 8px;
         padding: 8px 10px;
         border-radius: 12px;
-        background: #f7f9fb;
+        background: var(--neutral-50);
       }
     </style>
   </head>
@@ -471,9 +494,9 @@
         justify-content: center;
         display: flex;
         flex-direction: column;
-        color: var(--color-grey-90-60%, rgba(207, 250, 254, 0.6));
+        color: rgba(17, 24, 39, 0.96);
         font-size: 12px;
-        font-family: Inter;
+        font-family: PingFang SC;
         font-weight: 400;
         line-height: 16px;
         word-wrap: break-word;
@@ -498,10 +521,10 @@
         ),
         radial-gradient(
           ellipse 129.38% 157.6% at 100% 0%,
-          rgba(16, 185, 129, 0.18) 0%,
-          rgba(16, 185, 129, 0) 55%
+          rgba(243, 103, 68, 0.18) 0%,
+          rgba(243, 103, 68, 0) 55%
         ),
-        linear-gradient(141deg, #10b981 0%, #059669 100%);
+        linear-gradient(141deg, #f36744 0%, #f04419 100%);
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
       overflow: hidden;
       border-radius: 24px;
@@ -1154,9 +1177,9 @@
         justify-content: center;
         display: flex;
         flex-direction: column;
-        color: var(--color-grey-90-60%, rgba(207, 250, 254, 0.6));
+        color: rgba(17, 24, 39, 0.96);
         font-size: 12px;
-        font-family: Inter;
+        font-family: PingFang SC;
         font-weight: 400;
         line-height: 16px;
         word-wrap: break-word;
@@ -1327,6 +1350,7 @@
         font-family: PingFang SC;
         font-weight: 600;
         word-wrap: break-word;
+        white-space: nowrap;
       "
     >
       剩余额度
@@ -1535,7 +1559,7 @@
       >
         <path
           d="M7 5.6C7.74261 5.6 8.4548 5.305 8.9799 4.7799C9.505 4.2548 9.8 3.54261 9.8 2.8C9.8 2.05739 9.505 1.3452 8.9799 0.820101C8.4548 0.294999 7.74261 0 7 0C6.25739 0 5.5452 0.294999 5.0201 0.820101C4.495 1.3452 4.2 2.05739 4.2 2.8C4.2 3.54261 4.495 4.2548 5.0201 4.7799C5.5452 5.305 6.25739 5.6 7 5.6ZM2.45 7.7C2.91413 7.7 3.35925 7.51563 3.68744 7.18744C4.01563 6.85925 4.2 6.41413 4.2 5.95C4.2 5.48587 4.01563 5.04075 3.68744 4.71256C3.35925 4.38437 2.91413 4.2 2.45 4.2C1.98587 4.2 1.54075 4.38437 1.21256 4.71256C0.884375 5.04075 0.7 5.48587 0.7 5.95C0.7 6.41413 0.884375 6.85925 1.21256 7.18744C1.54075 7.51563 1.98587 7.7 2.45 7.7ZM13.3 5.95C13.3 6.41413 13.1156 6.85925 12.7874 7.18744C12.4592 7.51563 12.0141 7.7 11.55 7.7C11.0859 7.7 10.6408 7.51563 10.3126 7.18744C9.98437 6.85925 9.8 6.41413 9.8 5.95C9.8 5.48587 9.98437 5.04075 10.3126 4.71256C10.6408 4.38437 11.0859 4.2 11.55 4.2C12.0141 4.2 12.4592 4.38437 12.7874 4.71256C13.1156 5.04075 13.3 5.48587 13.3 5.95ZM7 6.3C7.92826 6.3 8.8185 6.66875 9.47487 7.32513C10.1313 7.9815 10.5 8.87174 10.5 9.8V14H3.5V9.8C3.5 8.87174 3.86875 7.9815 4.52513 7.32513C5.1815 6.66875 6.07174 6.3 7 6.3ZM2.1 9.8C2.1 9.3149 2.17 8.8466 2.3016 8.4042L2.1826 8.414C1.58262 8.47988 1.02806 8.76492 0.625284 9.21446C0.222503 9.664 -0.000156631 10.2464 8.26683e-08 10.85V14H2.1V9.8ZM14 14V10.85C14.0001 10.2259 13.7619 9.62522 13.3342 9.17069C12.9065 8.71615 12.3214 8.442 11.6984 8.4042C11.8293 8.8466 11.9 9.3149 11.9 9.8V14H14Z"
-          fill="#EA580C"
+          fill="#f36744"
         />
       </svg>
     </div>
@@ -1876,7 +1900,7 @@
           justify-content: center;
           display: flex;
           flex-direction: column;
-          color: #059669;
+          color: #f36744;
           font-size: 11px;
           font-family: PingFang SC;
           font-weight: 400;
@@ -1941,7 +1965,7 @@
           justify-content: center;
           display: flex;
           flex-direction: column;
-          color: #059669;
+          color: #f36744;
           font-size: 11px;
           font-family: PingFang SC;
           font-weight: 400;
@@ -1978,8 +2002,11 @@
           position: absolute;
           text-align: center;
           justify-content: center;
+          align-items: center;
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          gap: 2px;
+          white-space: nowrap;
         "
       >
         <span
@@ -2060,20 +2087,20 @@
       position: absolute;
     "
   >
-    <div
-      data-layer="Button"
-      class="Button"
-      style="
-        width: 366px;
-        height: 82px;
-        left: -8px;
-        top: 20.61px;
-        position: absolute;
-        background: #10b981;
-        box-shadow: 0px 10px 24px rgba(16, 185, 129, 0.35);
-        border-radius: 18px;
-      "
-    >
+      <div
+        data-layer="Button"
+        class="Button"
+        style="
+          width: 366px;
+          height: 82px;
+          left: -8px;
+          top: 20.61px;
+          position: absolute;
+          background: #f36744;
+          box-shadow: 0px 10px 24px rgba(243, 103, 68, 0.35);
+          border-radius: 18px;
+        "
+      >
       <div
         data-layer="Overlay"
         class="Overlay"
@@ -2226,10 +2253,10 @@
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <rect width="32" height="32" rx="16" fill="#ECFDF5" />
+          <rect width="32" height="32" rx="16" fill="#FFF3F0" />
           <path
             d="M11.4083 23.51H11.2003C10.4459 23.51 10.0691 23.51 9.83467 23.2756C9.60026 23.0428 9.60026 22.6652 9.60026 21.9108V21.0212C9.60026 20.6068 9.60026 20.3996 9.70666 20.214C9.81307 20.0285 9.97387 19.9357 10.2955 19.7485C12.4123 18.5173 15.418 17.8245 17.4236 19.0205C17.5585 19.101 17.6785 19.1991 17.7836 19.3149C17.8913 19.4325 17.9742 19.5706 18.0275 19.7208C18.0809 19.8711 18.1035 20.0306 18.0941 20.1898C18.0847 20.3489 18.0435 20.5046 17.9728 20.6476C17.9022 20.7905 17.8036 20.9179 17.6828 21.022C17.5866 21.1133 17.4692 21.1793 17.3412 21.214C17.4372 21.2028 17.5292 21.1903 17.6172 21.1764C18.346 21.0604 18.958 20.67 19.518 20.2468L20.9645 19.1549C21.2227 18.9675 21.5335 18.8666 21.8525 18.8666C22.1715 18.8666 22.4823 18.9675 22.7405 19.1549C23.1989 19.5013 23.3397 20.0717 23.0493 20.5372C22.7109 21.0796 22.2341 21.7732 21.7765 22.1972C21.3189 22.6212 20.6357 23.0004 20.0789 23.2692C19.4612 23.5675 18.7796 23.7387 18.086 23.8515C16.6796 24.0787 15.214 24.0435 13.8219 23.7571C13.0278 23.5937 12.2191 23.5103 11.4083 23.51ZM15.0892 9.09037C15.4948 8.36319 15.6972 8 16.0004 8C16.3036 8 16.506 8.36319 16.9116 9.09037L17.0156 9.27836C17.1316 9.48556 17.1892 9.58875 17.2788 9.65675C17.3684 9.72475 17.4804 9.75035 17.7044 9.80075L17.9076 9.84715C18.6948 10.0247 19.0884 10.1143 19.182 10.4151C19.2756 10.7159 19.0076 11.0303 18.4708 11.6575L18.3316 11.8199C18.1796 11.9983 18.1036 12.0871 18.0692 12.1975C18.0348 12.3079 18.046 12.4271 18.0692 12.6647L18.09 12.8807C18.1716 13.7182 18.2116 14.1366 17.9668 14.323C17.722 14.5094 17.3532 14.339 16.6164 13.9998L16.4252 13.9118C16.2164 13.8158 16.1116 13.7678 16.0004 13.7678C15.8892 13.7678 15.7844 13.8158 15.5756 13.9118L15.3844 13.9998C14.6484 14.3398 14.2787 14.5094 14.0339 14.323C13.7891 14.1366 13.8291 13.7182 13.9107 12.8815L13.9315 12.6647C13.9547 12.4271 13.9659 12.3079 13.9315 12.1975C13.8971 12.0871 13.8211 11.9975 13.6691 11.8199L13.5299 11.6575C12.9939 11.0303 12.7251 10.7159 12.8187 10.4151C12.9123 10.1143 13.3059 10.0247 14.0931 9.84715L14.2963 9.80075C14.5204 9.75035 14.6324 9.72475 14.722 9.65675C14.8116 9.58875 14.8692 9.48556 14.9844 9.27836L15.0892 9.09037ZM21.9445 12.5455C22.1477 12.1815 22.2485 11.9999 22.4005 11.9999C22.5525 11.9999 22.6533 12.1815 22.8565 12.5455L22.9085 12.6391C22.9661 12.7431 22.9949 12.7943 23.0397 12.8287C23.0845 12.8631 23.1405 12.8751 23.2525 12.9007L23.3541 12.9231C23.7477 13.0127 23.9445 13.0567 23.9909 13.2078C24.0373 13.359 23.9037 13.515 23.6357 13.8286L23.5661 13.9094C23.4901 13.999 23.4517 14.0438 23.4349 14.099C23.4181 14.1542 23.4237 14.2134 23.4349 14.3326L23.4453 14.4406C23.4853 14.859 23.5061 15.0686 23.3837 15.1614C23.2613 15.2542 23.0773 15.1694 22.7085 14.9998L22.6125 14.9558C22.5085 14.9078 22.4557 14.8838 22.4005 14.8838C22.3445 14.8838 22.2925 14.9078 22.1877 14.9558L22.0925 14.9998C21.7245 15.1694 21.5405 15.2542 21.4173 15.1614C21.2949 15.0686 21.3149 14.859 21.3557 14.4406L21.3661 14.3326C21.3773 14.2126 21.3837 14.1534 21.3661 14.099C21.3493 14.043 21.3109 13.999 21.2349 13.9094L21.1653 13.8286C20.8973 13.515 20.7629 13.3582 20.8101 13.2078C20.8573 13.0575 21.0533 13.0127 21.4469 12.9231L21.5485 12.9007C21.6605 12.8751 21.7165 12.8623 21.7613 12.8287C21.8061 12.7943 21.8349 12.7423 21.8925 12.6391L21.9445 12.5455ZM9.14425 12.5455C9.34826 12.1815 9.44826 11.9999 9.60026 11.9999C9.75227 11.9999 9.85307 12.1815 10.0563 12.5455L10.1083 12.6391C10.1659 12.7431 10.1947 12.7943 10.2395 12.8287C10.2843 12.8631 10.3403 12.8751 10.4523 12.9007L10.5539 12.9231C10.9475 13.0127 11.1443 13.0567 11.1915 13.2078C11.2379 13.3582 11.1035 13.515 10.8355 13.8286L10.7659 13.9094C10.6899 13.999 10.6515 14.0438 10.6347 14.099C10.6179 14.1542 10.6235 14.2134 10.6347 14.3326L10.6451 14.4406C10.6851 14.859 10.7059 15.0686 10.5835 15.1614C10.4611 15.2542 10.2763 15.1694 9.90827 14.9998L9.81227 14.9558C9.70826 14.9078 9.65546 14.8838 9.60026 14.8838C9.54426 14.8838 9.49226 14.9078 9.38746 14.9558L9.29226 14.9998C8.92425 15.1694 8.74025 15.2542 8.61704 15.1614C8.49464 15.0686 8.51464 14.859 8.55544 14.4406L8.56584 14.3326C8.57704 14.2126 8.58344 14.1534 8.56584 14.099C8.54904 14.043 8.51064 13.999 8.43464 13.9094L8.36504 13.8286C8.09704 13.515 7.96263 13.3582 8.00903 13.2078C8.05623 13.0567 8.25304 13.0127 8.64665 12.9231L8.74825 12.9007C8.86025 12.8751 8.91625 12.8623 8.96105 12.8287C9.00585 12.7943 9.03465 12.7423 9.09225 12.6391L9.14425 12.5455Z"
-            fill="#059669"
+            fill="#f36744"
           />
         </svg>
       </div>
@@ -2391,6 +2418,7 @@
         font-weight: 400;
         line-height: 16px;
         word-wrap: break-word;
+        white-space: nowrap;
       "
     >
       查看全部记录
