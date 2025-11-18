@@ -2,602 +2,491 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>BV共赢计划 · 申请团队长代打赏</title>
+    <title>申请团队长代打赏 - 新东家身份</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      :root {
+        /* Primary */
+        --primary-500: #f36744;
+        --primary-600: #f04419;
+
+        /* Neutral */
+        --neutral-0: #ffffff;
+        --neutral-50: #f7f9fb;
+        --neutral-100: #eef1f4;
+        --neutral-200: #dadfe4;
+        --neutral-400: #a1a8ae;
+        --neutral-600: #6a737c;
+        --neutral-900: #1e252d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
-        background: #f7fbfa;
+        min-height: 100vh;
         display: flex;
         justify-content: center;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-          "PingFang SC", "Segoe UI", system-ui, sans-serif;
+        background: var(--neutral-50);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+          sans-serif;
+        color: var(--neutral-900);
       }
 
       .page {
         width: 390px;
         min-height: 100vh;
-        background: #f7fbfa;
+        background: var(--neutral-50);
         display: flex;
         flex-direction: column;
       }
 
-      .page-header {
+      /* 顶部橙色身份区 */
+      .hero {
         padding: 16px 16px 12px;
-        background: radial-gradient(
-            ellipse 140% 200% at 0% 0%,
-            rgba(255, 255, 255, 0.18) 0%,
-            rgba(255, 255, 255, 0) 55%
-          ),
-          radial-gradient(
-            ellipse 140% 200% at 100% 0%,
-            rgba(243, 103, 68, 0.22) 0%,
-            rgba(243, 103, 68, 0) 55%
-          ),
-          linear-gradient(141deg, #f36744 0%, #f04419 100%);
-        color: #ffffff;
-        box-shadow: 0 12px 32px rgba(243, 103, 68, 0.32);
+        background-image: linear-gradient(
+          135deg,
+          var(--primary-500),
+          var(--primary-600)
+        );
+        color: var(--neutral-0);
       }
 
-      .page-header-bar {
+      .hero-top {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
       }
 
-      .page-header-title {
-        font-size: 18px;
-        font-weight: 700;
-        letter-spacing: 0.4px;
-      }
-
-      .page-header-sub {
-        font-size: 13px;
-        opacity: 0.9;
-      }
-
-      .back-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 28px;
-        height: 28px;
+      .hero-back {
+        width: 32px;
+        height: 32px;
         border-radius: 999px;
         border: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background: rgba(255, 255, 255, 0.16);
-        color: #ffffff;
+        color: var(--neutral-0);
+        font-size: 16px;
         cursor: pointer;
-        font-size: 18px;
-        line-height: 1;
       }
 
-      .page-body {
+      .hero-tag {
+        font-size: 11px; /* Tag */
+        line-height: 1.4;
+        font-weight: 500;
+        color: var(--neutral-0);
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .hero-title {
+        margin: 0;
+        font-size: 24px; /* Title 1 */
+        line-height: 1.3;
+        font-weight: 600;
+        color: var(--neutral-0);
+        text-align: left;
+      }
+
+      .hero-subtitle {
+        margin: 6px 0 0;
+        font-size: 14px; /* Body */
+        line-height: 1.6;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: left;
+      }
+
+      /* 主体 */
+      .main {
         flex: 1;
-        padding: 16px;
+        padding: 12px 16px 16px;
         display: flex;
         flex-direction: column;
         gap: 12px;
       }
 
       .card {
-        background: #ffffff;
+        background: var(--neutral-0);
         border-radius: 16px;
-        border: 1px solid #eef1f4;
-        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-        padding: 14px 14px 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
+        padding: 12px;
+        border: 1px solid var(--neutral-100);
       }
 
-      .row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
+      .field {
+        margin-bottom: 10px;
       }
 
-      .meta {
-        font-size: 12px;
-        color: #6a737c;
-      }
-
-      .input-group {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      .input-label {
-        font-size: 12px;
-        color: #6a737c;
-      }
-
-      .input-field {
-        border-radius: 12px;
-        border: 1px solid #dadfe4;
-        background: #fff;
-        font-size: 14px;
-        padding: 10px 12px;
-        outline: none;
-        color: #1e252d;
-      }
-
-      .input-field:focus {
-        border-color: #fba893;
-        box-shadow: 0 0 0 2px #fff3f0;
-        background: #fff3f0;
-      }
-
-      .support {
-        font-size: 12px;
-        color: #a1a8ae;
-      }
-
-      .stat-row {
-        margin-top: 4px;
-        gap: 12px;
-      }
-
-      .stat-box {
-        flex: 1;
-        background: #f7f9fb;
-        border-radius: 12px;
-        padding: 8px 12px;
-      }
-
-      .stat-label {
-        font-size: 11px;
-        color: #6a737c;
+      .field-label {
+        font-size: 12px; /* Caption */
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--neutral-600);
         margin-bottom: 4px;
       }
 
-      .stat-value {
-        font-size: 18px;
-        font-weight: 700;
-        color: #111827;
+      .dropdown {
+        position: relative;
       }
 
-      .field-inline {
+      .dropdown-trigger {
+        width: 100%;
+        padding: 8px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--neutral-200);
+        background: var(--neutral-50);
         display: flex;
         align-items: center;
-        gap: 6px;
+        justify-content: space-between;
+        cursor: default;
       }
 
-      .field-inline-input {
-        flex: 1;
-      }
-
-      .field-suffix {
-        font-size: 12px;
-        color: #6a737c;
-      }
-
-      .field-fill-btn {
-        padding: 6px 12px;
-        border-radius: 999px;
-        border: none;
-        background: #111827;
-        color: #fff;
-        font-size: 12px;
-        cursor: pointer;
-      }
-
-      .summary-box {
-        margin-top: 8px;
-        padding: 8px 10px;
-        border-radius: 12px;
-        background: #f7f9fb;
-      }
-
-      .page-footer {
-        padding: 12px 16px 20px;
-        border-top: 1px solid #eef1f4;
-        background: rgba(247, 249, 251, 0.92);
+      .dropdown-main {
         display: flex;
-        gap: 10px;
+        flex-direction: column;
+        text-align: left;
+      }
+
+      .dropdown-title {
+        font-size: 14px; /* Body */
+        line-height: 1.6;
+        font-weight: 400;
+        color: var(--neutral-900);
+      }
+
+      .dropdown-desc {
+        font-size: 12px; /* Caption */
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--neutral-400);
+      }
+
+      .dropdown-meta {
+        font-size: 12px; /* Caption */
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--neutral-600);
+        margin-left: 8px;
+        white-space: nowrap;
+      }
+
+      .field-hint-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--neutral-600);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      .section-title {
+        font-size: 16px; /* Title 3 */
+        line-height: 1.4;
+        font-weight: 600;
+        color: var(--neutral-900);
+      }
+
+      .section-subtitle {
+        font-size: 12px; /* Caption */
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--neutral-600);
+      }
+
+      .balance-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .balance-card {
+        border-radius: 12px;
+        padding: 8px 12px;
+        background: var(--neutral-50);
+      }
+
+      .balance-label {
+        font-size: 12px;
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--neutral-600);
+      }
+
+      .balance-value {
+        margin-top: 4px;
+        font-size: 14px;
+        line-height: 1.6;
+        font-weight: 600;
+        color: var(--neutral-900);
+      }
+
+      .balance-value--right {
+        text-align: right;
+      }
+
+      .amount-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .amount-input-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 12px;
+        background: var(--neutral-0);
+        border: 1px solid var(--neutral-200);
+      }
+
+      .amount-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 0;
+        background: transparent;
+        font-size: 14px;
+        line-height: 1.6;
+        font-weight: 400;
+        color: var(--neutral-900);
+      }
+
+      .amount-input::placeholder {
+        color: var(--neutral-400);
+      }
+
+      .amount-unit {
+        margin-left: 8px;
+        font-size: 11px; /* Tag */
+        line-height: 1.4;
+        font-weight: 500;
+        color: var(--neutral-600);
+        white-space: nowrap;
+      }
+
+      .btn-secondary {
+        min-width: 64px;
+        padding: 8px 12px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 11px; /* Tag */
+        line-height: 1.4;
+        font-weight: 500;
+        color: var(--neutral-0);
+        background: var(--primary-500);
+      }
+
+      .summary-card {
+        border-radius: 12px;
+        padding: 8px 12px;
+        background: var(--neutral-50);
+        font-size: 12px;
+      }
+
+      .summary-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 4px;
+      }
+
+      .summary-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .summary-label {
+        font-size: 12px;
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--neutral-600);
+      }
+
+      .summary-value {
+        font-size: 14px;
+        line-height: 1.6;
+        font-weight: 600;
+        color: var(--neutral-900);
+      }
+
+      .helper-text {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--neutral-600);
+      }
+
+      /* 底部双按钮 */
+      .footer {
+        padding: 8px 16px 16px;
+        border-top: 1px solid var(--neutral-100);
+        background: var(--neutral-50);
+        display: flex;
+        gap: 12px;
       }
 
       .btn {
         flex: 1;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: none;
-        font-size: 14px;
+        height: 44px;
+        border-radius: 22px;
+        font-size: 14px; /* Body */
+        line-height: 1.6;
+        font-weight: 600;
         cursor: pointer;
       }
 
-      .btn-primary {
-        background: #f36744;
-        color: #fff;
-        box-shadow: 0 10px 26px rgba(243, 103, 68, 0.4);
+      .btn-cancel {
+        border: 1px solid var(--neutral-200);
+        background: var(--neutral-0);
+        color: var(--neutral-600);
       }
 
-      .btn-secondary {
-        background: #fff;
-        color: #1e252d;
-        border: 1px solid #e5e7eb;
+      .btn-primary {
+        border: none;
+        background: var(--primary-500);
+        color: var(--neutral-0);
       }
     </style>
   </head>
   <body>
     <div class="page">
-      <header class="page-header">
-        <div class="page-header-bar">
-          <button class="back-btn" id="backBtn" aria-label="返回">
-            ←
-          </button>
-          <div style="font-size: 12px; opacity: 0.85">新东家身份</div>
+      <!-- 顶部橙色身份区 -->
+      <header class="hero">
+        <div class="hero-top">
+          <button class="hero-back" aria-label="返回">←</button>
+          <span class="hero-tag">新东家身份</span>
         </div>
-        <div class="page-header-title">申请团队长代打赏</div>
-        <div class="page-header-sub">
-          支付 CNV + DOS 让团队长帮你完成首笔打赏。
-        </div>
+        <h1 class="hero-title">申请团队长代打赏</h1>
+        <p class="hero-subtitle">支付 CNV + DOS 让团队长帮你完成首笔打赏。</p>
       </header>
 
-      <main class="page-body">
+      <!-- 主体内容 -->
+      <main class="main">
+        <!-- 关系选择：团队长 + 担保人 -->
         <section class="card">
-          <div class="input-group">
-            <label class="input-label">选择团队长</label>
-            <select class="input-field" id="applyLeader"></select>
-            <div class="support">请选择本次申请绑定的团队长。</div>
-          </div>
-
-          <div class="input-group">
-            <label class="input-label">选择担保人</label>
-            <select class="input-field" id="applyGuarantor"></select>
-            <div class="support">
-              担保人列表会显示对应的剩余担保额度。
-            </div>
-          </div>
-
-          <div class="meta" id="guarantorQuotaText">
-            当前团队长：— · 担保人剩余担保额度：—
-          </div>
-
-          <div class="row stat-row">
-            <div class="stat-box">
-              <div class="stat-label">可用 CNV</div>
-              <div class="stat-value" id="availableCnv">128,000</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-label">可用 DOS</div>
-              <div class="stat-value" id="availableDos">2,350</div>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label class="input-label">申请代打赏额度（CNV）</label>
-            <div class="field-inline">
-              <input
-                class="input-field field-inline-input"
-                id="applyCnv"
-                type="number"
-                min="0"
-                step="1"
-                placeholder="例如 10000"
-              />
-              <span class="field-suffix">CNV</span>
-              <button
-                type="button"
-                class="field-fill-btn"
-                id="fillAllCnvBtn"
-              >
-                全部
+          <!-- 选择团队长 -->
+          <div class="field">
+            <div class="field-label">选择团队长</div>
+            <div class="dropdown">
+              <button class="dropdown-trigger" type="button">
+                <div class="dropdown-main">
+                  <span class="dropdown-title">王**（138****7788）</span>
+                  <span class="dropdown-desc"
+                    >请选择本次申请绑定的团队长。</span
+                  >
+                </div>
+                <span class="dropdown-meta">选择</span>
               </button>
             </div>
-            <div class="row" style="justify-content: space-between">
-              <div class="support">最小 10,000 CNV</div>
-              <div class="support">手续费 1%（DOS）</div>
-            </div>
           </div>
 
-          <div class="summary-box">
-            <div class="meta">
-              需支付 DOS 手续费 <b id="applyDosNeed">0</b> DOS
+          <!-- 选择担保人 -->
+          <div class="field">
+            <div class="field-label">选择担保人</div>
+            <div class="dropdown">
+              <button class="dropdown-trigger" type="button">
+                <div class="dropdown-main">
+                  <span class="dropdown-title"
+                    >张**（133****8899） · 剩余额度 200,000 CNV</span
+                  >
+                  <span class="dropdown-desc"
+                    >担保人列表会显示对应的剩余担保额度。</span
+                  >
+                </div>
+              </button>
             </div>
-            <div class="meta">
-              本次将冻结资产
-              <b id="freezeCnv">0</b> CNV + <b id="freezeDos">0</b> DOS
-            </div>
-            <div class="support">
-              确认后将冻结相应 CNV 与 DOS，用于本次代打赏，业务完成后按规则结算分配。
+            <div class="field-hint-row">
+              <span>当前团队长：王**</span>
+              <span>担保人剩余担保额度：200,000 CNV</span>
             </div>
           </div>
         </section>
+
+        <!-- 我的资产 -->
+        <section class="card">
+          <div class="section-header">
+            <div class="section-title">我的资产</div>
+            <div class="section-subtitle">仅展示与本次申请相关</div>
+          </div>
+          <div class="balance-grid">
+            <div class="balance-card">
+              <div class="balance-label">可用 CNV</div>
+              <div class="balance-value">128,000</div>
+            </div>
+            <div class="balance-card">
+              <div class="balance-label">可用 DOS</div>
+              <div class="balance-value balance-value--right">2,350</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 金额输入 + 汇总信息 -->
+        <section class="card">
+          <!-- 金额输入 -->
+          <div class="field">
+            <div class="field-label">申请代打赏额度（CNV）</div>
+            <div class="amount-row">
+              <div class="amount-input-wrapper">
+                <input
+                  class="amount-input"
+                  type="text"
+                  inputmode="numeric"
+                  value="10000"
+                  placeholder="例如 10000"
+                  readonly
+                />
+                <span class="amount-unit">CNV</span>
+              </div>
+              <button class="btn-secondary" type="button">全部</button>
+            </div>
+            <div class="field-hint-row">
+              <span>最小 10,000 CNV</span>
+              <span>手续费 1%（DOS）</span>
+            </div>
+          </div>
+
+          <!-- 汇总信息 -->
+          <div class="summary-card">
+            <div class="summary-row">
+              <span class="summary-label">需支付 DOS 手续费</span>
+              <span class="summary-value">100 DOS</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">本次将冻结资产</span>
+              <span class="summary-value">10,000 CNV + 100 DOS</span>
+            </div>
+          </div>
+
+          <!-- 说明 -->
+          <p class="helper-text">
+            确认后将冻结对应 CNV 与 DOS，用于本次代打赏，业务完成后按规则结算。
+          </p>
+        </section>
       </main>
 
-      <footer class="page-footer">
-        <button class="btn btn-secondary" id="cancelBtn">取消</button>
-        <button class="btn btn-primary" id="submitApply">提交申请</button>
+      <!-- 底部双按钮 -->
+      <footer class="footer">
+        <button class="btn btn-cancel" type="button">取消</button>
+        <button class="btn btn-primary" type="button">提交申请</button>
       </footer>
     </div>
-
-    <script>
-      // 简单演示数据：团队长和担保人列表（含剩余担保额度）
-      var leaders = [
-        {
-          id: "TL001",
-          name: "王**",
-          phone: "138****7788",
-          guarantors: [
-            {
-              id: "G001",
-              name: "张**",
-              phone: "138****8899",
-              quotaRemain: 200000,
-            },
-            {
-              id: "G002",
-              name: "李**",
-              phone: "138****7788",
-              quotaRemain: 150000,
-            },
-          ],
-        },
-        {
-          id: "TL002",
-          name: "李**",
-          phone: "139****7788",
-          guarantors: [
-            {
-              id: "G003",
-              name: "刘**",
-              phone: "138****7788",
-              quotaRemain: 80000,
-            },
-            {
-              id: "G004",
-              name: "赵**",
-              phone: "137****1122",
-              quotaRemain: 60000,
-            },
-          ],
-        },
-        {
-          id: "TL003",
-          name: "刘**",
-          phone: "137****7788",
-          guarantors: [
-            {
-              id: "G005",
-              name: "周**",
-              phone: "139****5566",
-              quotaRemain: 50000,
-            },
-          ],
-        },
-      ];
-
-      // 可用余额（示意值，可按实际替换）
-      var balances = {
-        cnv: 128000,
-        dos: 2350,
-      };
-
-      function fmt(n) {
-        return n.toLocaleString("zh-CN");
-      }
-
-      function findLeader(id) {
-        for (var i = 0; i < leaders.length; i++) {
-          if (leaders[i].id === id) return leaders[i];
-        }
-        return null;
-      }
-
-      function updateGuarantorQuotaText() {
-        var select = document.getElementById("applyGuarantor");
-        var quotaText = document.getElementById("guarantorQuotaText");
-        var leaderSelect = document.getElementById("applyLeader");
-        if (!select || !quotaText) return;
-        var opt = select.options[select.selectedIndex];
-        var leaderName = "—";
-        if (leaderSelect && leaderSelect.value) {
-          var ld = findLeader(leaderSelect.value);
-          if (ld) leaderName = ld.name;
-        }
-        if (!opt) {
-          quotaText.textContent =
-            "当前团队长：" + leaderName + " · 担保人剩余担保额度：—";
-          return;
-        }
-        var quota = Number(opt.getAttribute("data-quota") || 0);
-        quotaText.textContent =
-          "当前团队长：" +
-          leaderName +
-          " · 担保人剩余担保额度：" +
-          (quota ? fmt(quota) + " CNV" : "—");
-      }
-
-      function renderGuarantorOptions(leaderId) {
-        var select = document.getElementById("applyGuarantor");
-        if (!select) return;
-        select.innerHTML = "";
-        var leader =
-          findLeader(leaderId) || (leaders.length ? leaders[0] : null);
-        if (!leader || !leader.guarantors || !leader.guarantors.length) {
-          updateGuarantorQuotaText();
-          return;
-        }
-        for (var i = 0; i < leader.guarantors.length; i++) {
-          var g = leader.guarantors[i];
-          var opt = document.createElement("option");
-          opt.value = g.id;
-          opt.textContent =
-            g.name +
-            "（" +
-            g.phone +
-            "） · 剩余额度 " +
-            fmt(g.quotaRemain) +
-            " CNV";
-          opt.setAttribute("data-quota", g.quotaRemain);
-          if (i === 0) opt.selected = true;
-          select.appendChild(opt);
-        }
-        updateGuarantorQuotaText();
-      }
-
-      function renderLeaderOptions() {
-        var select = document.getElementById("applyLeader");
-        if (!select) return;
-        select.innerHTML = "";
-        for (var i = 0; i < leaders.length; i++) {
-          var ld = leaders[i];
-          var opt = document.createElement("option");
-          opt.value = ld.id;
-          opt.textContent = ld.name + "（" + ld.phone + "）";
-          if (i === 0) opt.selected = true;
-          select.appendChild(opt);
-        }
-        if (leaders.length) {
-          renderGuarantorOptions(leaders[0].id);
-        } else {
-          renderGuarantorOptions(null);
-        }
-      }
-
-      // 初始化余额
-      var availableCnvEl = document.getElementById("availableCnv");
-      var availableDosEl = document.getElementById("availableDos");
-      if (availableCnvEl) availableCnvEl.textContent = fmt(balances.cnv);
-      if (availableDosEl) availableDosEl.textContent = fmt(balances.dos);
-
-      // 绑定选择联动
-      var leaderSelectEl = document.getElementById("applyLeader");
-      var guarantorSelectEl = document.getElementById("applyGuarantor");
-
-      if (leaderSelectEl) {
-        leaderSelectEl.addEventListener("change", function () {
-          renderGuarantorOptions(leaderSelectEl.value);
-        });
-      }
-      if (guarantorSelectEl) {
-        guarantorSelectEl.addEventListener("change", updateGuarantorQuotaText);
-      }
-
-      // 渲染初始选项
-      renderLeaderOptions();
-
-      // 计算 DOS 与冻结资产
-      var applyCnv = document.getElementById("applyCnv");
-      var applyDosNeed = document.getElementById("applyDosNeed");
-      var freezeCnv = document.getElementById("freezeCnv");
-      var freezeDos = document.getElementById("freezeDos");
-
-      function updateApplyNumbers() {
-        if (!applyCnv || !applyDosNeed) return;
-        var v = Math.max(0, Number(applyCnv.value || 0));
-        var need = v * 0.01;
-        applyDosNeed.textContent = need.toLocaleString("zh-CN", {
-          maximumFractionDigits: 2,
-        });
-        if (freezeCnv) freezeCnv.textContent = v ? fmt(v) : "0";
-        if (freezeDos)
-          freezeDos.textContent = need
-            ? need.toLocaleString("zh-CN", { maximumFractionDigits: 2 })
-            : "0";
-      }
-
-      if (applyCnv && applyDosNeed) {
-        applyCnv.addEventListener("input", updateApplyNumbers);
-      }
-
-      var fillAllBtn = document.getElementById("fillAllCnvBtn");
-      if (fillAllBtn && applyCnv) {
-        fillAllBtn.addEventListener("click", function () {
-          var quota = 0;
-          if (guarantorSelectEl && guarantorSelectEl.options.length) {
-            var opt = guarantorSelectEl.options[guarantorSelectEl.selectedIndex];
-            quota = Number(opt.getAttribute("data-quota") || 0);
-          }
-          var maxAmount = balances.cnv;
-          if (quota > 0) {
-            maxAmount = Math.min(maxAmount, quota);
-          }
-          applyCnv.value = maxAmount;
-          updateApplyNumbers();
-        });
-      }
-
-      // 取消 & 提交
-      var cancelBtn = document.getElementById("cancelBtn");
-      if (cancelBtn) {
-        cancelBtn.addEventListener("click", function () {
-          if (window.history.length > 1) {
-            window.history.back();
-          } else {
-            window.location.href = "new_owner.html";
-          }
-        });
-      }
-
-      var submitApply = document.getElementById("submitApply");
-      if (submitApply && applyCnv) {
-        submitApply.addEventListener("click", function () {
-          var leaderId =
-            leaderSelectEl && leaderSelectEl.options.length
-              ? leaderSelectEl.value
-              : "";
-          var guarantorId =
-            guarantorSelectEl && guarantorSelectEl.options.length
-              ? guarantorSelectEl.value
-              : "";
-          if (!leaderId) {
-            alert("请选择团队长");
-            return;
-          }
-          if (!guarantorId) {
-            alert("请选择担保人");
-            return;
-          }
-          var v = Math.max(0, Number(applyCnv.value || 0));
-          if (!v) {
-            alert("请输入申请的 CNV 数量");
-            return;
-          }
-          var needDos = v * 0.01;
-          var leaderText = "";
-          var guarantorText = "";
-          if (leaderSelectEl && leaderSelectEl.options.length) {
-            leaderText =
-              leaderSelectEl.options[leaderSelectEl.selectedIndex].textContent;
-          }
-          if (guarantorSelectEl && guarantorSelectEl.options.length) {
-            guarantorText =
-              guarantorSelectEl.options[guarantorSelectEl.selectedIndex]
-                .textContent;
-          }
-          var url = new URL(
-            "apply_team_leader_confirmation.html",
-            window.location.href
-          );
-          url.searchParams.set("cnv", String(v));
-          url.searchParams.set("dos", String(needDos));
-          if (leaderText) url.searchParams.set("leader", leaderText);
-          if (guarantorText) url.searchParams.set("guarantor", guarantorText);
-          window.location.href = url.toString();
-        });
-      }
-
-      // 返回按钮
-      var backBtn = document.getElementById("backBtn");
-      if (backBtn) {
-        backBtn.addEventListener("click", function () {
-          if (window.history.length > 1) {
-            window.history.back();
-          } else {
-            window.location.href = "new_owner.html";
-          }
-        });
-      }
-    </script>
   </body>
 </html>

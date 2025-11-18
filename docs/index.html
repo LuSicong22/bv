@@ -167,16 +167,17 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
-        cursor: pointer;
       }
 
-      .page-label {
+      .page-title {
+        font-size: 13px;
+        font-weight: 500;
+        color: #e5e7eb;
+      }
+
+      .page-filename {
         font-size: 12px;
         color: #9ca3af;
-      }
-
-      .page-label strong {
-        color: #e5e7eb;
       }
 
       .preview-shell {
@@ -185,6 +186,14 @@
         border: 1px solid #111827;
         overflow: hidden;
         background: #020617;
+        transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+      }
+
+      .preview-shell:hover {
+        cursor: pointer;
+        transform: translateY(-4px);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+        border-color: #9ca3af;
       }
 
       .preview-frame {
@@ -222,14 +231,14 @@
         <div class="title-mark">BV</div>
         <div>
           <h1 style="margin: 0; font-size: 20px;">全局原型预览</h1>
-          <p class="subtitle">滚轮上下滚动视图，按住 Command + 滚轮缩放；按住鼠标右键拖拽平移，点击任意缩略图跳转到对应页面</p>
+          <p class="subtitle">滚轮上下滚动视图，按住 Command + 滚轮缩放；按住鼠标左键或右键拖拽平移，点击任意缩略图跳转到对应页面</p>
         </div>
       </div>
       <div class="controls">
         <span class="badge" id="page-count">0 个页面</span>
         <div class="control-group">
           <label for="zoom">缩放</label>
-          <input id="zoom" class="range" type="range" min="25" max="180" value="85" />
+          <input id="zoom" class="range" type="range" min="25" max="500" value="85" />
           <span id="zoom-value">85%</span>
         </div>
       </div>
@@ -238,7 +247,7 @@
       <div class="workspace" id="workspace">
         <div class="board" id="board"></div>
         <div class="footer-tip">
-          <span>右键拖拽平移视图</span>
+          <span>左键或右键拖拽平移视图</span>
           <span>Command/Ctrl + 滚轮缩放</span>
         </div>
       </div>
@@ -347,9 +356,8 @@
             item.className = "page-item";
 
             const label = document.createElement("div");
-            label.className = "page-label";
             const fileName = page.path.split("/").pop();
-            label.innerHTML = `<strong>${page.title}</strong>（${fileName}）`;
+            label.innerHTML = `<div class="page-title">${page.title}</div><div class="page-filename">${fileName}</div>`;
 
             const wrapper = document.createElement("div");
             wrapper.className = "preview-shell";
@@ -365,9 +373,27 @@
             iframe.style.transform = `scale(${previewScale})`;
             iframe.style.pointerEvents = "none";
 
+            iframe.addEventListener("load", () => {
+              try {
+                const doc = iframe.contentDocument || iframe.contentWindow?.document;
+                if (!doc) return;
+                const body = doc.body;
+                const html = doc.documentElement;
+                const fullHeight = Math.max(
+                  body ? body.scrollHeight : 0,
+                  html ? html.scrollHeight : 0
+                );
+                if (!fullHeight || !Number.isFinite(fullHeight)) return;
+                wrapper.style.height = `${fullHeight * previewScale}px`;
+                iframe.style.height = `${fullHeight}px`;
+              } catch {
+                // ignore cross-origin access errors
+              }
+            });
+
             wrapper.appendChild(iframe);
             item.append(label, wrapper);
-            item.addEventListener("click", () => {
+            wrapper.addEventListener("click", () => {
               window.location.href = page.path;
             });
 
@@ -388,7 +414,10 @@
       });
 
       workspace.addEventListener("mousedown", (e) => {
-        if (e.button !== 2) return;
+        const isRightClick = e.button === 2;
+        const isLeftClick = e.button === 0 && !e.target.closest(".preview-shell");
+        if (!isRightClick && !isLeftClick) return;
+        e.preventDefault();
         isPanning = true;
         workspace.classList.add("panning");
         startOffset = { x: e.clientX - translate.x, y: e.clientY - translate.y };
@@ -420,7 +449,7 @@
             const offsetX = e.clientX - rect.left;
             const offsetY = e.clientY - rect.top;
             const delta = clamp(-e.deltaY * 0.0012, -0.4, 0.4);
-            const newScale = clamp(scale * (1 + delta), 0.25, 1.8);
+            const newScale = clamp(scale * (1 + delta), 0.25, 5);
             const scaleRatio = newScale / scale;
 
             translate.x = offsetX - (offsetX - translate.x) * scaleRatio;
