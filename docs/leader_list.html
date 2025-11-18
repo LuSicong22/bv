@@ -2,10 +2,12 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>新东家身份 · 我的团队长列表</title>
+  <title>BV共赢计划 · 我的团队长列表</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    /* ===== 设计规范 Tokens（基于 bv-color-system / bv-typography 精简版） ===== */
     :root {
+      /* 主品牌色 Primary */
       --primary-50:  #FFF3F0;
       --primary-100: #FEE3DC;
       --primary-200: #FDC7BA;
@@ -15,6 +17,7 @@
       --primary-600: #F04419;
       --primary-700: #CE340D;
 
+      /* 中性色 Neutrals */
       --neutral-0:   #FFFFFF;
       --neutral-50:  #F7F9FB;
       --neutral-100: #EEF1F4;
@@ -23,14 +26,7 @@
       --neutral-600: #6A737C;
       --neutral-900: #1E252D;
 
-      --owner-50:  #FFF3F0;
-      --owner-100: #FEE3DC;
-      --owner-200: #FDC7BA;
-      --owner-300: #FBA893;
-      --owner-400: #F7896E;
-      --owner-500: #F36744;
-      --owner-600: #F04419;
-
+      /* 身份色：担保人（蓝色） */
       --guarantor-50:  #E8F2FF;
       --guarantor-100: #C7DEFF;
       --guarantor-200: #98C4FF;
@@ -39,13 +35,21 @@
       --guarantor-500: #1C6DE4;
       --guarantor-600: #0F51B8;
 
-      --leader-50:  #ECFDF5;
-      --leader-100: #D1FAE5;
-      --leader-200: #A7F3D0;
-      --leader-300: #6EE7B7;
-      --leader-400: #34D399;
-      --leader-500: #10B981;
-      --leader-600: #059669;
+      /* 身份色：团队长（珊瑚暖色系，用主品牌橙红系表达领导力） */
+      --leader-50:  #FFF3F0;
+      --leader-100: #FEE3DC;
+      --leader-200: #FDC7BA;
+      --leader-300: #FBA893;
+      --leader-400: #F7896E;
+      --leader-500: #F36744;
+      --leader-600: #F04419;
+
+      /* 新东家页主色：翡翠绿 / Teal 系（从会话约定扩展的角色色） */
+      --owner-50:  #ECFDF5;
+      --owner-100: #D1FAE5;
+      --owner-200: #A7F3D0;
+      --owner-500: #10B981;
+      --owner-600: #059669;
     }
 
     * {
@@ -53,215 +57,693 @@
     }
 
     body {
-      margin: 24px;
+      margin: 0;
+      padding: 16px 0;
       font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-      background: radial-gradient(circle at 0 0, rgba(243, 103, 68, 0.06), transparent 60%), var(--neutral-50);
+      background: var(--neutral-50);
       color: var(--neutral-900);
+      line-height: 1.5;
     }
 
-    .app {
-      width: 390px;
-      min-height: 844px;
+    /* ===== 手机 App 外壳 ===== */
+    .app-root {
+      max-width: 420px;
       margin: 0 auto;
-      border-radius: 32px;
-      background: var(--neutral-0);
-      box-shadow: 0 20px 40px rgba(8, 25, 52, 0.18);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      padding: 0 12px;
     }
 
-    .status-bar-spacer { height: 20px; }
+    .app-shell {
+      max-width: 390px;
+      margin: 0 auto;
+      border-radius: 24px;
+      background: var(--neutral-0);
+      border: 1px solid var(--neutral-100);
+      box-shadow: 0 16px 40px rgba(12, 32, 61, 0.12);
+      overflow: hidden;
+    }
 
-    .app-bar {
-      height: 52px;
-      padding: 0 16px;
+    main {
+      padding: 16px 18px 18px;
+    }
+
+    /* ===== 顶部导航 + 标题（Typography 对齐） ===== */
+    .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--neutral-100);
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
+      margin-bottom: 12px;
     }
 
-    .app-bar-left { display: flex; align-items: center; gap: 8px; }
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-    .icon-button {
+    .back-button {
       width: 28px;
       height: 28px;
       border-radius: 999px;
       border: 1px solid var(--neutral-100);
       background: var(--neutral-0);
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
     }
 
-    .icon-back {
-      width: 8px;
-      height: 8px;
+    .back-icon {
+      width: 12px;
+      height: 12px;
       border-left: 2px solid var(--neutral-900);
       border-bottom: 2px solid var(--neutral-900);
       transform: rotate(45deg);
-      margin-left: 2px;
     }
 
-    .app-bar-title { font-size: 20px; font-weight: 600; letter-spacing: 0.02em; }
-    .app-bar-link { font-size: 13px; color: var(--owner-500); background: transparent; border: none; }
-
-    main {
-      flex: 1;
-      padding: 12px 16px 16px;
-      background: linear-gradient(180deg, var(--neutral-50) 0%, var(--neutral-0) 32%);
-      overflow-y: auto;
+    .page-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .summary-card {
-      border-radius: 16px;
-      background: var(--owner-50);
+    /* Title 2 / 模块标题：20px / 600 / 1.35 */
+    .page-title {
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--neutral-900);
+    }
+
+    /* Caption / 辅助说明：12px / 400 */
+    .page-subtitle {
+      font-size: 12px;
+      color: var(--neutral-600);
+    }
+
+    .identity-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
       border: 1px solid var(--owner-100);
-      padding: 12px 12px 10px;
-      margin-bottom: 12px;
+      background: var(--owner-50);
+      color: var(--owner-600);
+      white-space: nowrap;
     }
 
-    .summary-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-    .summary-count { color: var(--owner-600); }
-    .summary-caption { font-size: 12px; color: var(--neutral-600); }
+    .identity-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--owner-600);
+    }
 
-    .leader-list { display: flex; flex-direction: column; gap: 8px; }
-
-    .leader-item {
+    /* ===== 概览条：数量 + 剩余可代打赏团队长数量 ===== */
+    .summary-card {
+      margin-top: 8px;
+      margin-bottom: 12px;
+      padding: 10px 12px;
       border-radius: 16px;
       background: var(--neutral-0);
       border: 1px solid var(--neutral-100);
-      padding: 10px 12px;
-      display: flex;
-      gap: 10px;
-      box-shadow: 0 8px 24px rgba(12, 32, 61, 0.04);
-    }
-
-    .leader-item.is-default {
-      border-color: var(--owner-200);
-      box-shadow: 0 10px 28px rgba(243, 103, 68, 0.08);
-    }
-
-    .leader-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 12px;
-      background: var(--leader-50);
-      border: 1px solid var(--leader-200);
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 8px;
     }
 
-    .leader-avatar-icon {
-      width: 16px;
-      height: 16px;
-      position: relative;
-    }
-
-    .leader-avatar-icon::before,
-    .leader-avatar-icon::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      background: var(--leader-500);
-    }
-
-    .leader-avatar-icon::before {
-      width: 10px;
-      height: 10px;
-      top: 0;
-      left: 3px;
-    }
-
-    .leader-avatar-icon::after {
-      width: 14px;
-      height: 6px;
-      bottom: 0;
-      left: 1px;
-      background: radial-gradient(circle at 50% 0, var(--leader-500) 0, var(--leader-500) 52%, transparent 60%);
-      box-shadow: 0 -4px 0 0 var(--leader-500);
-      border-radius: 999px 999px 4px 4px;
-    }
-
-    .leader-main { flex: 1; min-width: 0; }
-    .leader-header-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
-    .leader-name { font-size: 14px; font-weight: 500; }
-    .leader-phone { font-size: 12px; color: var(--neutral-600); }
-
-    .tag-default {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--owner-50);
-      border: 1px solid var(--owner-200);
-      color: var(--owner-600);
-    }
-
-    .leader-meta-row { display: flex; gap: 6px; flex-wrap: wrap; }
-
-    .meta-chip {
+    .summary-left {
       display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      color: var(--neutral-600);
+    }
+
+    .summary-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-900);
+    }
+
+    .summary-tag-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .summary-tag {
+      display: inline-flex;
       align-items: center;
       gap: 4px;
       padding: 3px 8px;
       border-radius: 999px;
-      background: var(--neutral-50);
+      font-size: 11px;
       border: 1px solid var(--neutral-100);
+      background: var(--neutral-50);
+      color: var(--neutral-600);
+      white-space: nowrap;
+    }
+
+    .summary-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--owner-500);
+    }
+
+    .summary-tag-dot-secondary {
+      background: var(--leader-500);
+    }
+
+    /* ===== 搜索 / 过滤区 ===== */
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      margin-top: 4px;
+    }
+
+    .search-input {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--neutral-100);
+      background: var(--neutral-0);
+    }
+
+    .search-icon {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--neutral-400);
+      position: relative;
+    }
+
+    .search-icon::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 2px;
+      background: var(--neutral-400);
+      border-radius: 999px;
+      transform: rotate(45deg);
+      right: -4px;
+      bottom: -1px;
+    }
+
+    .search-input input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 13px;
+      background: transparent;
+      color: var(--neutral-900);
+    }
+
+    .search-input input::placeholder {
+      color: var(--neutral-400);
+    }
+
+    .filter-button {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--neutral-100);
+      background: var(--neutral-0);
+      color: var(--neutral-600);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .filter-button-dot {
+      width: 2px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--neutral-400);
+      box-shadow:
+        4px 0 0 var(--neutral-400),
+        -4px 0 0 var(--neutral-400);
+    }
+
+    /* ===== 分组标题（Type: Title 3 / 小标题） ===== */
+    .section-heading {
+      font-size: 16px;
+      line-height: 1.4;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin: 8px 0 6px;
+    }
+
+    .section-caption {
+      font-size: 12px;
+      color: var(--neutral-600);
+      margin-bottom: 6px;
+    }
+
+    /* ===== 团队长列表 ===== */
+    .leader-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .leader-card {
+      border-radius: 16px;
+      border: 1px solid var(--neutral-100);
+      background: var(--neutral-0);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .leader-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .leader-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .label-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .label-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid var(--leader-100);
+      background: var(--leader-50);
+      color: var(--leader-600);
+      white-space: nowrap;
+    }
+
+    .label-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--leader-500);
+    }
+
+    .label-secondary {
+      font-size: 11px;
+      color: var(--neutral-400);
+    }
+
+    .leader-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-900);
+    }
+
+    .leader-phone {
+      font-size: 12px;
+      color: var(--neutral-600);
+    }
+
+    .leader-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .quota-text {
+      font-size: 12px;
+      color: var(--neutral-600);
+    }
+
+    .quota-strong {
+      font-weight: 600;
+      color: var(--owner-600);
+    }
+
+    .primary-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: var(--owner-50);
+      color: var(--owner-600);
+    }
+
+    .primary-chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--owner-600);
+    }
+
+    .leader-body-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--neutral-600);
+    }
+
+    .body-label {
+      font-size: 11px;
+      color: var(--neutral-400);
+      margin-bottom: 2px;
+    }
+
+    .body-main {
+      font-size: 12px;
+      color: var(--neutral-900);
+    }
+
+    .guarantor-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: var(--guarantor-50);
+      color: var(--guarantor-600);
+      white-space: nowrap;
+    }
+
+    .guarantor-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--guarantor-500);
+    }
+
+    .leader-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2px;
+      gap: 8px;
+    }
+
+    .leader-meta {
+      font-size: 11px;
+      color: var(--neutral-400);
+    }
+
+    .link-button {
+      font-size: 11px;
+      color: var(--owner-600);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .link-button-arrow {
+      width: 6px;
+      height: 6px;
+      border-top: 1.5px solid var(--owner-600);
+      border-right: 1.5px solid var(--owner-600);
+      transform: rotate(45deg);
+    }
+
+    /* ===== 底部提示 ===== */
+    .footer-note {
+      margin-top: 10px;
+      padding: 8px 10px 10px;
+      border-radius: 12px;
+      background: var(--neutral-50);
+      border: 1px dashed var(--neutral-200);
       font-size: 11px;
       color: var(--neutral-600);
     }
 
-    .meta-chip.is-guarantor {
-      background: var(--guarantor-50);
-      border-color: var(--guarantor-100);
-      color: var(--guarantor-600);
-    }
-
-    .meta-icon-shield {
-      width: 10px;
-      height: 12px;
-      border-radius: 4px 4px 3px 3px;
-      border: 1px solid var(--guarantor-400);
-      position: relative;
-    }
-
-    .meta-icon-shield::after {
-      content: "";
-      position: absolute;
-      left: 2px;
-      right: 2px;
-      bottom: 1px;
-      height: 4px;
-      border-radius: 0 0 3px 3px;
-      background: var(--guarantor-400);
-    }
-
-    .footer-note {
-      margin-top: 10px;
-      font-size: 11px;
-      text-align: center;
-      color: var(--neutral-400);
+    .footer-note-strong {
+      color: var(--owner-600);
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
-  <div class="app">
-    <div class="status-bar-spacer"></div>
+  <!-- 本页为示例 UI，文案和数据为占位示例，实际数据由后端注入 -->
+  <div class="app-root">
+    <div class="app-shell">
+      <main>
+        <!-- 顶部导航 + 标题 -->
+        <div class="top-bar">
+          <div class="top-bar-left">
+            <button class="back-button" aria-label="返回">
+              <span class="back-icon"></span>
+            </button>
+            <div class="page-title-group">
+              <div class="page-title">我的团队长</div>
+              <div class="page-subtitle">已绑定 15 位团队长</div>
+            </div>
+          </div>
+          <div class="identity-pill">
+            <span class="identity-dot"></span>
+            新东家身份
+          </div>
+        </div>
 
-    <header class="app-bar">
-      <div class="app-bar-left">
-        <button class="icon-button" aria-label="返回"><span class="icon-back"></span></button>
-        <div class="app-bar-title">我的团队长</div>
-      </div>
-      <button class="app-bar-link">更换 / 绑定团队长</button>
-    </header>
+        <!-- 概览条：团队长总数 + 剩余可代打赏团队长数量 -->
+        <section class="summary-card">
+          <div class="summary-left">
+            <div class="summary-label">团队长概览</div>
+            <div class="summary-value">共 15 位</div>
+          </div>
+          <div class="summary-tag-row">
+            <div class="summary-tag">
+              <span class="summary-tag-dot"></span>
+              剩余可代打赏团队长数量：<strong>3</strong>
+            </div>
+            <div class="summary-tag">
+              <span class="summary-tag-dot summary-tag-dot-secondary"></span>
+              单次选择 1 位团队长发起操作
+            </div>
+          </div>
+        </section>
 
-    <main>
-      <section class="summary-card">
-        <div class="summary-title">已绑定 <span class="summary-count">15</span> 位团队长</div>
-        <p class="summary-caption">申请团队长代打赏或代打赏团队长时，可在这里选择具体的团队长及
+        <!-- 搜索 / 筛选 -->
+        <section class="filter-row">
+          <div class="search-input">
+            <span class="search-icon"></span>
+            <input
+              type="text"
+              placeholder="按姓名或手机搜索团队长"
+              aria-label="搜索团队长"
+            />
+          </div>
+          <button class="filter-button" type="button">
+            <span class="filter-button-dot"></span>
+            筛选
+          </button>
+        </section>
+
+        <!-- 分组标题 -->
+        <h2 class="section-heading">全部团队长</h2>
+        <p class="section-caption">
+          展示最近与你产生「申请代打赏」或「代打赏团队长」关系的全部团队长。
+        </p>
+
+        <!-- 团队长列表（示例 3 条，可向下滚动展示更多） -->
+        <section class="leader-list" aria-label="已绑定团队长列表">
+          <!-- 团队长 1 · 常用 / 优先推荐 -->
+          <article class="leader-card">
+            <div class="leader-card-header">
+              <div class="leader-left">
+                <div class="label-row">
+                  <div class="label-pill">
+                    <span class="label-pill-dot"></span>
+                    团队长
+                  </div>
+                  <span class="label-secondary">优先推荐</span>
+                </div>
+                <div class="leader-name">沉***8</div>
+                <div class="leader-phone">177****7183</div>
+              </div>
+              <div class="leader-right">
+                <div class="quota-text">
+                  剩余名额：
+                  <span class="quota-strong">1</span> 次
+                </div>
+                <div class="primary-chip">
+                  <span class="primary-chip-dot"></span>
+                  最近 30 天有记录
+                </div>
+              </div>
+            </div>
+
+            <div class="leader-body-row">
+              <div>
+                <div class="body-label">担保人</div>
+                <div class="body-main">677***8（886****778）</div>
+              </div>
+              <div>
+                <div class="body-label">担保人信息</div>
+                <div class="guarantor-pill">
+                  <span class="guarantor-dot"></span>
+                  信用良好 · 担保额度充足
+                </div>
+              </div>
+            </div>
+
+            <div class="leader-footer">
+              <div class="leader-meta">
+                最近一次操作：2025-01-02  14:23
+              </div>
+              <button class="link-button" type="button">
+                查看关系详情
+                <span class="link-button-arrow"></span>
+              </button>
+            </div>
+          </article>
+
+          <!-- 团队长 2 -->
+          <article class="leader-card">
+            <div class="leader-card-header">
+              <div class="leader-left">
+                <div class="label-row">
+                  <div class="label-pill">
+                    <span class="label-pill-dot"></span>
+                    团队长
+                  </div>
+                  <span class="label-secondary">常用团队长</span>
+                </div>
+                <div class="leader-name">李***3</div>
+                <div class="leader-phone">139****2203</div>
+              </div>
+              <div class="leader-right">
+                <div class="quota-text">
+                  剩余名额：
+                  <span class="quota-strong">2</span> 次
+                </div>
+                <div class="primary-chip">
+                  <span class="primary-chip-dot"></span>
+                  已完成多次代打赏
+                </div>
+              </div>
+            </div>
+
+            <div class="leader-body-row">
+              <div>
+                <div class="body-label">担保人</div>
+                <div class="body-main">688***6（185****312）</div>
+              </div>
+              <div>
+                <div class="body-label">担保人信息</div>
+                <div class="guarantor-pill">
+                  <span class="guarantor-dot"></span>
+                  正常 · 略有额度占用
+                </div>
+              </div>
+            </div>
+
+            <div class="leader-footer">
+              <div class="leader-meta">
+                最近一次操作：2024-12-28  10:05
+              </div>
+              <button class="link-button" type="button">
+                查看关系详情
+                <span class="link-button-arrow"></span>
+              </button>
+            </div>
+          </article>
+
+          <!-- 团队长 3 -->
+          <article class="leader-card">
+            <div class="leader-card-header">
+              <div class="leader-left">
+                <div class="label-row">
+                  <div class="label-pill">
+                    <span class="label-pill-dot"></span>
+                    团队长
+                  </div>
+                  <span class="label-secondary">偶尔使用</span>
+                </div>
+                <div class="leader-name">王***5</div>
+                <div class="leader-phone">188****4509</div>
+              </div>
+              <div class="leader-right">
+                <div class="quota-text">
+                  剩余名额：
+                  <span class="quota-strong">0</span> 次
+                </div>
+                <div class="primary-chip">
+                  <span class="primary-chip-dot"></span>
+                  名额已用完
+                </div>
+              </div>
+            </div>
+
+            <div class="leader-body-row">
+              <div>
+                <div class="body-label">担保人</div>
+                <div class="body-main">677***8（886****779）</div>
+              </div>
+              <div>
+                <div class="body-label">担保人信息</div>
+                <div class="guarantor-pill">
+                  <span class="guarantor-dot"></span>
+                  担保额度紧张 · 谨慎使用
+                </div>
+              </div>
+            </div>
+
+            <div class="leader-footer">
+              <div class="leader-meta">
+                最近一次操作：2024-12-15  18:42
+              </div>
+              <button class="link-button" type="button">
+                查看关系详情
+                <span class="link-button-arrow"></span>
+              </button>
+            </div>
+          </article>
+
+          <!-- ……其余团队长列表略 · 实际可渲染至 15 条或分页 / 下拉加载 …… -->
+        </section>
+
+        <!-- 底部说明 -->
+        <section class="footer-note">
+          说明：
+          <span class="footer-note-strong">「我的团队长」</span>
+          仅展示你当前已绑定的全部团队长及对应担保人信息，不用于直接修改绑定关系。
+          选择具体团队长发起「申请团队长代打赏」或「代打赏团队长」时，会在对应流程中再次选择。
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
