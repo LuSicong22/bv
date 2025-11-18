@@ -1,30 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>页面全局预览</title>
+    <style>
       :root {
         color-scheme: light;
       }
+
       * {
         box-sizing: border-box;
       }
+
+      body {
+        margin: 0;
         font-family: "Inter", "SF Pro Display", "PingFang SC", system-ui, -apple-system,
           sans-serif;
         background: radial-gradient(circle at 20% 20%, #f0f8ff 0, #f5f7fb 35%, #f9fbff 65%);
         color: #0f172a;
         min-height: 100vh;
+        display: flex;
         flex-direction: column;
+      }
+
       header {
+        display: flex;
         padding: 16px 20px;
         justify-content: space-between;
         gap: 12px;
+        align-items: center;
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(16px);
         border-bottom: 1px solid #e5e7eb;
         position: sticky;
         top: 0;
         z-index: 2;
+      }
+
       .title-block {
         display: flex;
         gap: 10px;
+        align-items: center;
+      }
+
       .title-mark {
         width: 36px;
         height: 36px;
@@ -33,22 +52,35 @@
         display: grid;
         place-items: center;
         font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+      }
+
       .subtitle {
         margin: 2px 0 0;
         color: #475569;
         font-size: 13px;
+      }
+
       .controls {
+        display: flex;
         align-items: center;
         gap: 12px;
         color: #475569;
         font-size: 14px;
+      }
+
       .control-group {
         display: flex;
         align-items: center;
         gap: 6px;
+      }
+
       .range {
         width: 140px;
         accent-color: #ff6b6b;
+      }
+
       .badge {
         padding: 6px 10px;
         border-radius: 999px;
@@ -59,19 +91,28 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
+      }
+
       main {
         flex: 1;
         position: relative;
         overflow: hidden;
+      }
+
       .workspace {
         position: absolute;
+        inset: 0;
         cursor: grab;
         background-image: linear-gradient(#e2e8f0 1px, transparent 1px),
           linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
         background-size: 32px 32px;
         background-position: -1px -1px;
+      }
+
       .workspace.panning {
         cursor: grabbing;
+      }
+
       .board {
         position: absolute;
         top: 50%;
@@ -80,6 +121,8 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
         gap: 32px;
+      }
+
       .page-card {
         position: relative;
         padding: 16px 16px 20px;
@@ -88,50 +131,74 @@
         border: 1px solid #e2e8f0;
         box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
         transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+      }
+
       .page-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
         border-color: #cbd5e1;
+      }
+
       .page-header {
+        display: flex;
         justify-content: space-between;
         margin-bottom: 12px;
+        align-items: center;
+      }
+
       .page-title {
         margin: 0;
         font-size: 16px;
         color: #0f172a;
+      }
+
       .page-path {
         margin: 0;
         font-size: 12px;
         color: #64748b;
+      }
+
       .preview-shell {
         position: relative;
         border-radius: 12px;
         border: 1px solid #e2e8f0;
         overflow: hidden;
         background: #f8fafc;
+      }
+
       .preview-frame {
         width: 100%;
         height: 100%;
         border: none;
         transform-origin: top left;
         background: white;
+      }
+
       .open-button {
         position: absolute;
         right: 12px;
         top: 12px;
         padding: 8px 12px;
         background: #0f172a;
+        color: #f8fafc;
+        border: none;
+        border-radius: 10px;
         font-weight: 600;
+        cursor: pointer;
         transition: transform 150ms ease, box-shadow 150ms ease;
         box-shadow: 0 8px 18px rgba(15, 23, 42, 0.3);
+      }
+
       .open-button:hover {
         transform: translateY(-1px);
         box-shadow: 0 12px 24px rgba(15, 23, 42, 0.25);
       }
+
       .meta-hint {
         font-size: 13px;
         color: #475569;
       }
+
       .footer-tip {
         position: absolute;
         right: 16px;
@@ -143,17 +210,25 @@
         background: rgba(15, 23, 42, 0.75);
         color: #e2e8f0;
         font-size: 13px;
+        border-radius: 10px;
         backdrop-filter: blur(12px);
         box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
       }
+
       .footer-tip strong {
         color: #fff7ed;
+      }
+    </style>
+  </head>
+  <body>
     <header>
       <div class="title-block">
         <div class="title-mark">BV</div>
         <div>
           <h1 style="margin: 0; font-size: 20px;">全局原型预览</h1>
           <p class="subtitle">拖拽空白区域可移动视图，滚轮缩放，点击任意缩略图跳转到对应页面</p>
+        </div>
+      </div>
       <div class="controls">
         <span class="badge" id="page-count">0 个页面</span>
         <div class="control-group">
@@ -161,6 +236,7 @@
           <input id="zoom" class="range" type="range" min="25" max="180" value="85" />
           <span id="zoom-value">85%</span>
         </div>
+      </div>
     </header>
     <main>
       <div class="workspace" id="workspace">
@@ -169,7 +245,10 @@
           <span>按 <strong>Space</strong> 并拖拽可随时平移</span>
           <span>滚轮缩放</span>
         </div>
+      </div>
     </main>
+
+    <script>
       const pages = [
         { title: "业主主页", path: "new_owner.html", width: 390, height: 844 },
         { title: "申请组长", path: "apply_team_leader.html", width: 390, height: 1000 },
@@ -184,38 +263,49 @@
         { title: "设计规范 - 字体", path: "../product_requirements/bv-typography.html", width: 1280, height: 720 },
         { title: "临时方案 temp3", path: "../temp3.html", width: 1280, height: 900 }
       ];
+
       const board = document.getElementById("board");
       const workspace = document.getElementById("workspace");
       const zoomRange = document.getElementById("zoom");
       const zoomValue = document.getElementById("zoom-value");
       const pageCount = document.getElementById("page-count");
       const previewScale = 0.35;
+
       let translate = { x: -240, y: -120 };
       let scale = zoomRange.value / 100;
       let isPanning = false;
       let startOffset = { x: 0, y: 0 };
       let spacePressed = false;
+
       window.addEventListener("keydown", (e) => {
         if (e.code === "Space") {
           spacePressed = true;
           workspace.classList.add("panning");
           e.preventDefault();
+        }
       });
+
       window.addEventListener("keyup", (e) => {
         if (e.code === "Space") {
           spacePressed = false;
           workspace.classList.remove("panning");
+        }
       });
+
       const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+
       function applyTransform() {
         board.style.transform = `translate(${translate.x}px, ${translate.y}px) scale(${scale})`;
         zoomValue.textContent = `${Math.round(scale * 100)}%`;
       }
+
       function renderPages() {
         pageCount.textContent = `${pages.length} 个页面`;
+
         pages.forEach((page) => {
           const card = document.createElement("article");
           card.className = "page-card";
+
           const header = document.createElement("div");
           header.className = "page-header";
           const title = document.createElement("h3");
@@ -225,10 +315,12 @@
           meta.className = "page-path";
           meta.textContent = page.path;
           header.append(title, meta);
+
           const wrapper = document.createElement("div");
           wrapper.className = "preview-shell";
           wrapper.style.width = `${page.width * previewScale}px`;
           wrapper.style.height = `${page.height * previewScale}px`;
+
           const iframe = document.createElement("iframe");
           iframe.className = "preview-frame";
           iframe.loading = "lazy";
@@ -236,6 +328,7 @@
           iframe.style.width = `${page.width}px`;
           iframe.style.height = `${page.height}px`;
           iframe.style.transform = `scale(${previewScale})`;
+
           const button = document.createElement("button");
           button.className = "open-button";
           button.type = "button";
@@ -244,19 +337,25 @@
             e.stopPropagation();
             window.location.href = page.path;
           });
+
           wrapper.appendChild(iframe);
           card.append(header, wrapper, button);
           card.addEventListener("click", () => {
             window.location.href = page.path;
+          });
+
           board.appendChild(card);
         });
       }
+
       renderPages();
       applyTransform();
+
       zoomRange.addEventListener("input", (e) => {
         scale = e.target.value / 100;
         applyTransform();
       });
+
       workspace.addEventListener("mousedown", (e) => {
         const onCard = !!e.target.closest(".page-card");
         if (onCard && !spacePressed) return;
@@ -287,11 +386,16 @@
           const delta = clamp(-e.deltaY * 0.0012, -0.4, 0.4);
           const newScale = clamp(scale * (1 + delta), 0.25, 1.8);
           const scaleRatio = newScale / scale;
+
           translate.x = offsetX - (offsetX - translate.x) * scaleRatio;
           translate.y = offsetY - (offsetY - translate.y) * scaleRatio;
+
           scale = newScale;
           zoomRange.value = Math.round(scale * 100);
           applyTransform();
         },
         { passive: false }
       );
+    </script>
+  </body>
+</html>
