@@ -2,263 +2,342 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>BV共赢计划 · 申请已提交</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>申请团队长代打赏 - 提交成功</title>
     <style>
-      body {
+      * {
+        box-sizing: border-box;
         margin: 0;
-        background: #f7fbfa;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+          sans-serif;
+      }
+
+      body {
+        background: #f7f9fb;
         display: flex;
         justify-content: center;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-          "PingFang SC", "Segoe UI", system-ui, sans-serif;
+        padding: 16px 0;
       }
 
-      .page {
+      .app-wrapper {
         width: 390px;
-        min-height: 100vh;
-        background: #f7fbfa;
+        max-width: 100%;
+        background: #f7f9fb;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+        overflow: hidden;
         display: flex;
         flex-direction: column;
+        min-height: 844px;
       }
 
-      .page-header {
-        padding: 20px 16px 18px;
-        background: radial-gradient(
-            ellipse 140% 200% at 0% 0%,
-            rgba(255, 255, 255, 0.18) 0%,
-            rgba(255, 255, 255, 0) 55%
-          ),
-          radial-gradient(
-            ellipse 140% 200% at 100% 0%,
-            rgba(243, 103, 68, 0.22) 0%,
-            rgba(243, 103, 68, 0) 55%
-          ),
-          linear-gradient(141deg, #f36744 0%, #f04419 100%);
-        color: #ffffff;
-        box-shadow: 0 12px 32px rgba(243, 103, 68, 0.32);
+      .app-header {
+        height: 56px;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        border-bottom: 1px solid #eef1f4;
       }
 
-      .page-header-title {
-        font-size: 18px;
-        font-weight: 700;
-        letter-spacing: 0.4px;
+      .back-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        color: #64748b;
+        font-size: 16px;
       }
 
-      .page-header-sub {
-        margin-top: 6px;
-        font-size: 13px;
-        opacity: 0.9;
-      }
-
-      .page-body {
+      .header-title {
         flex: 1;
-        padding: 20px 16px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #0f172a;
+        margin-right: 32px; /* balance back button */
+      }
+
+      .app-body {
+        flex: 1;
+        padding: 20px 16px 16px;
+        overflow-y: auto;
+      }
+
+      .status-section {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .status-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        border-radius: 16px;
+        background: #fff3f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+      }
+
+      .status-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 16px;
+        background: #f36744;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .status-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 8px;
+      }
+
+      .status-desc {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #64748b;
+        white-space: pre-line;
       }
 
       .card {
         background: #ffffff;
         border-radius: 16px;
         border: 1px solid #eef1f4;
-        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-        padding: 18px 16px 18px;
+        padding: 14px 14px 12px;
+        margin-bottom: 16px;
+      }
+
+      .card-header {
         display: flex;
-        flex-direction: column;
-        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      .card-title {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: #475569;
+      }
+
+      .card-tag {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 8px;
+        border-radius: 16px;
+        background: #fff3f0;
+        color: #f36744;
+      }
+
+      .field-group + .field-group {
+        margin-top: 10px;
+      }
+
+      .field-label {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-bottom: 2px;
+      }
+
+      .field-value-main {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0f172a;
+      }
+
+      .field-value {
+        font-size: 14px;
+        color: #0f172a;
+      }
+
+      .field-sub {
+        font-size: 12px;
+        color: #64748b;
+        margin-top: 2px;
+      }
+
+      .divider {
+        height: 1px;
+        background: #eef1f4;
+        margin: 10px 0;
+      }
+
+      .next-steps-list {
+        margin-top: 4px;
+      }
+
+      .next-steps-item {
+        font-size: 14px;
+        color: #475569;
+        line-height: 1.6;
+        display: flex;
         align-items: flex-start;
       }
 
-      .status-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 999px;
-        background: #fff3f0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 4px;
+      .next-steps-bullet {
+        width: 14px;
+        flex-shrink: 0;
       }
 
-      .status-icon-inner {
-        width: 22px;
-        height: 22px;
-        border-radius: 999px;
-        background: #f36744;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        font-size: 14px;
+      .next-steps-text {
+        flex: 1;
       }
 
-      .status-title {
-        font-size: 16px;
-        font-weight: 700;
-        color: #111827;
-      }
-
-      .status-desc {
-        font-size: 13px;
-        color: #6a737c;
-      }
-
-      .meta-row {
-        margin-top: 6px;
-        padding-top: 8px;
-        border-top: 1px dashed #e5e7eb;
-        font-size: 12px;
-        color: #6a737c;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .meta-row b {
-        color: #111827;
-        font-weight: 600;
-      }
-
-      .tips {
-        font-size: 12px;
-        color: #a1a8ae;
-        line-height: 1.6;
-      }
-
-      .page-footer {
-        padding: 12px 16px 20px;
+      .footer {
+        background: #ffffff;
         border-top: 1px solid #eef1f4;
-        background: rgba(247, 249, 251, 0.92);
+        padding: 10px 16px 16px;
+        position: sticky;
+        bottom: 0;
         display: flex;
-        gap: 10px;
+        gap: 12px;
       }
 
       .btn {
         flex: 1;
-        display: inline-flex;
+        height: 44px;
+        border-radius: 22px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
         align-items: center;
         justify-content: center;
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: none;
-        font-size: 14px;
         cursor: pointer;
       }
 
       .btn-primary {
         background: #f36744;
-        color: #fff;
-        box-shadow: 0 10px 26px rgba(243, 103, 68, 0.4);
+        color: #ffffff;
       }
 
       .btn-secondary {
-        background: #fff;
-        color: #1e252d;
-        border: 1px solid #e5e7eb;
+        background: #ffffff;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+      }
+
+      @media (max-width: 420px) {
+        body {
+          padding: 0;
+        }
+
+        .app-wrapper {
+          border-radius: 0;
+          box-shadow: none;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="page">
-      <header class="page-header">
-        <div class="page-header-title">申请已提交</div>
-        <div class="page-header-sub">
-          我们已通知团队长，请留意团队长完成代打赏后的短信和资产变动。
-        </div>
+    <div class="app-wrapper">
+      <!-- 顶部导航 -->
+      <header class="app-header">
+        <div class="back-icon">&#x2190;</div>
+        <div class="header-title">申请已提交</div>
       </header>
 
-      <main class="page-body">
+      <!-- 页面内容 -->
+      <main class="app-body">
+        <!-- 成功状态区 -->
+        <section class="status-section">
+          <div class="status-icon-wrapper">
+            <div class="status-icon">&#10003;</div>
+          </div>
+          <div class="status-title">团队长代打赏申请已提交</div>
+          <p class="status-desc">
+            已冻结本次申请的 CNV 与 1% DOS 服务费，
+            团队长处理完成后，系统会自动更新记录。
+          </p>
+        </section>
+
+        <!-- 申请信息卡片 -->
         <section class="card">
-          <div class="status-icon">
-            <div class="status-icon-inner">✓</div>
-          </div>
-          <div class="status-title">等待团队长代打赏</div>
-          <div class="status-desc" id="statusDesc">
-            申请信息已发送给团队长，请在“代打赏记录”中查看最新进度。
+          <div class="card-header">
+            <div class="card-title">本次申请信息</div>
+            <div class="card-tag">待团队长处理</div>
           </div>
 
-          <div class="meta-row">
-            <div>
-              本次申请额度：
-              <b id="metaCnv">—</b>
-              CNV
-            </div>
-            <div>
-              预计支付 DOS 手续费：
-              <b id="metaDos">—</b>
-              DOS
-            </div>
-            <div>
-              团队长：
-              <b id="metaLeader">—</b>
-            </div>
-            <div>
-              担保人：
-              <b id="metaGuarantor">—</b>
-            </div>
+          <div class="field-group">
+            <div class="field-label">申请 CNV 数量</div>
+            <div class="field-value-main">10,000 CNV</div>
           </div>
 
-          <div class="tips">
-            提示：如果长时间未处理，你可以主动联系团队长，也可以取消本次代打赏后重新发起申请。
+          <div class="field-group">
+            <div class="field-label">DOS 服务费（1%）</div>
+            <div class="field-value">100 DOS</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="field-group">
+            <div class="field-label">团队长</div>
+            <div class="field-value">沉***8（889***9）</div>
+            <div class="field-sub">团队长码库账号：677***8</div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">担保人</div>
+            <div class="field-value">张***生（186****0021）</div>
+            <div class="field-sub">本次预计占用担保额度：10,000 CNV</div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">申请时间</div>
+            <div class="field-value">2025-11-17 15:28</div>
+          </div>
+        </section>
+
+        <!-- 下一步提示 -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">接下来你可以</div>
+          </div>
+          <div class="next-steps-list">
+            <div class="next-steps-item">
+              <div class="next-steps-bullet">·</div>
+              <div class="next-steps-text">
+                在「新东家身份 &gt; 团队长代打赏记录」中查看处理进度
+              </div>
+            </div>
+            <div class="next-steps-item">
+              <div class="next-steps-bullet">·</div>
+              <div class="next-steps-text">
+                通过微信或其他通讯工具，提醒团队长尽快代打赏
+              </div>
+            </div>
+            <div class="next-steps-item">
+              <div class="next-steps-bullet">·</div>
+              <div class="next-steps-text">
+                若团队长长时间未处理，可以发起投诉，由客服介入调查
+              </div>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer class="page-footer">
-        <button class="btn btn-secondary" id="backHomeBtn">
-          返回新东家首页
-        </button>
-        <button class="btn btn-primary" id="viewHistoryBtn">
-          查看代打赏记录
-        </button>
+      <!-- 底部按钮区 -->
+      <footer class="footer">
+        <button class="btn btn-secondary" type="button">查看代打赏进度</button>
+        <button class="btn btn-primary" type="button">返回新东家首页</button>
       </footer>
     </div>
-
-    <script>
-      (function () {
-        var params = new URLSearchParams(window.location.search);
-        var cnv = Number(params.get("cnv") || 0);
-        var dos = Number(params.get("dos") || 0);
-        var leader = params.get("leader") || "";
-        var guarantor = params.get("guarantor") || "";
-
-        function fmt(n) {
-          return n.toLocaleString("zh-CN", {
-            maximumFractionDigits: 2,
-          });
-        }
-
-        var metaCnv = document.getElementById("metaCnv");
-        var metaDos = document.getElementById("metaDos");
-        var metaLeader = document.getElementById("metaLeader");
-        var metaGuarantor = document.getElementById("metaGuarantor");
-
-        if (cnv && metaCnv) metaCnv.textContent = fmt(cnv);
-        if (dos && metaDos) metaDos.textContent = fmt(dos);
-        if (leader && metaLeader) metaLeader.textContent = leader;
-        if (guarantor && metaGuarantor) metaGuarantor.textContent = guarantor;
-
-        var backHomeBtn = document.getElementById("backHomeBtn");
-        if (backHomeBtn) {
-          backHomeBtn.addEventListener("click", function () {
-            window.location.href = "new_owner.html";
-          });
-        }
-
-        var viewHistoryBtn = document.getElementById("viewHistoryBtn");
-        if (viewHistoryBtn) {
-          viewHistoryBtn.addEventListener("click", function () {
-            // 目前原型中记录列表在首页下方，直接返回首页，后续可替换为“代打赏记录”独立页
-            window.location.href = "new_owner.html#history";
-          });
-        }
-      })();
-    </script>
   </body>
 </html>
-

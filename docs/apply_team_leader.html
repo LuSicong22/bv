@@ -145,7 +145,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        cursor: default;
+        cursor: pointer;
       }
 
       .dropdown-main {
@@ -386,7 +386,11 @@
           <div class="field">
             <div class="field-label">选择团队长</div>
             <div class="dropdown">
-              <button class="dropdown-trigger" type="button">
+              <button
+                class="dropdown-trigger"
+                type="button"
+                onclick="window.location.href='apply_team_leader_select_leader.html'"
+              >
                 <div class="dropdown-main">
                   <span class="dropdown-title">王**（138****7788）</span>
                   <span class="dropdown-desc"
@@ -402,7 +406,11 @@
           <div class="field">
             <div class="field-label">选择担保人</div>
             <div class="dropdown">
-              <button class="dropdown-trigger" type="button">
+              <button
+                class="dropdown-trigger"
+                type="button"
+                onclick="window.location.href='apply_team_leader_select_guarantor.html'"
+              >
                 <div class="dropdown-main">
                   <span class="dropdown-title"
                     >张**（133****8899） · 剩余额度 200,000 CNV</span
@@ -411,6 +419,7 @@
                     >担保人列表会显示对应的剩余担保额度。</span
                   >
                 </div>
+                <span class="dropdown-meta">选择</span>
               </button>
             </div>
             <div class="field-hint-row">
