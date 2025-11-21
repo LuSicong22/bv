@@ -1,0 +1,300 @@
+<!-- Section → 邀请 & 账号绑定 -->
+<div
+  data-layer="Section → 邀请与绑定"
+  class="Section"
+  style="
+    width: 366px;
+    left: 12px;
+    top: 880px; /* 位置可按实际情况在 Figma 中微调 */
+    position: absolute;
+    background: var(--color-white-solid, white);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.03);
+    border-radius: 24px;
+    outline: 1px var(--color-grey-95, #eef1f4) solid;
+    outline-offset: -1px;
+    padding: 14px 16px 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  "
+>
+  <!-- 标题 -->
+  <div
+    data-layer="邀请与绑定"
+    style="
+      height: 22px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      color: var(--color-azure-15, #1e252d);
+      font-size: 16px;
+      font-family: PingFang SC;
+      font-weight: 600;
+      line-height: 22.4px;
+      word-wrap: break-word;
+    "
+  >
+    邀请与绑定
+  </div>
+
+  <!-- 行 1：A8 邀请列表入口 -->
+  <div
+    data-layer="Row → A8邀请列表"
+    style="
+      align-self: stretch;
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      margin-top: 2px;
+    "
+  >
+    <div
+      style="
+        color: #6a737c;
+        font-size: 12px;
+        font-family: PingFang SC;
+        font-weight: 400;
+        word-wrap: break-word;
+      "
+    >
+      A8邀请列表
+    </div>
+    <div
+      style="
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        display: flex;
+      "
+    >
+      <div
+        style="
+          color: #a1a8ae;
+          font-size: 11px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          word-wrap: break-word;
+        "
+      >
+        查看邀请记录
+      </div>
+      <div
+        style="
+          width: 14px;
+          height: 14px;
+          border-radius: 999px;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          border: 1px solid #eef1f4;
+          color: #a1a8ae;
+          font-size: 10px;
+          font-family: PingFang SC;
+        "
+      >
+        &gt;
+      </div>
+    </div>
+  </div>
+
+  <!-- 分隔线 -->
+  <div style="height: 1px; background: #eef1f4; border-radius: 999px"></div>
+
+  <!-- 行 2：我的邀请码（可复制） -->
+  <div
+    data-layer="Row → 我的邀请码"
+    style="
+      align-self: stretch;
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+    "
+  >
+    <div
+      style="
+        color: #6a737c;
+        font-size: 12px;
+        font-family: PingFang SC;
+        font-weight: 400;
+        word-wrap: break-word;
+      "
+    >
+      我的邀请码
+    </div>
+    <div
+      style="
+        justify-content: flex-end;
+        align-items: center;
+        gap: 6px;
+        display: flex;
+      "
+    >
+      <div
+        style="
+          color: #1e252d;
+          font-size: 12px;
+          font-family: PingFang SC;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          word-wrap: break-word;
+        "
+      >
+        A8****88
+      </div>
+      <div
+        data-layer="Button → 复制"
+        style="
+          padding: 2px 8px;
+          background: #f7f9fb;
+          border-radius: 999px;
+          outline: 1px #eef1f4 solid;
+          outline-offset: -1px;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+        "
+      >
+        <div
+          style="
+            color: #6a737c;
+            font-size: 11px;
+            font-family: PingFang SC;
+            font-weight: 400;
+            word-wrap: break-word;
+          "
+        >
+          复制
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行 3：推荐人（含添加 / 更换入口）-->
+  <div
+    data-layer="Row → 推荐人"
+    style="
+      align-self: stretch;
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+    "
+  >
+    <div
+      style="
+        color: #6a737c;
+        font-size: 12px;
+        font-family: PingFang SC;
+        font-weight: 400;
+        word-wrap: break-word;
+      "
+    >
+      推荐人
+    </div>
+    <div
+      style="
+        justify-content: flex-end;
+        align-items: center;
+        gap: 6px;
+        display: flex;
+      "
+    >
+      <!-- 示例：已绑定推荐人态（刘** (138****7788)）-->
+      <div
+        style="
+          color: #1e252d;
+          font-size: 12px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          word-wrap: break-word;
+        "
+      >
+        刘** (138****7788)
+      </div>
+      <div
+        data-layer="Link → 添加/更换推荐人"
+        style="
+          color: #f36744;
+          font-size: 11px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          word-wrap: break-word;
+        "
+      >
+        更换
+      </div>
+      <!--
+          空态时可替换为：
+          <div style="color:#A1A8AE; font-size:11px; font-family:PingFang SC;">暂未设置</div>
+          <div style="color:#F36744; font-size:11px; font-family:PingFang SC;">添加</div>
+        -->
+    </div>
+  </div>
+
+  <!-- 行 4：2041MALL 账号（含绑定入口） -->
+  <div
+    data-layer="Row → 2041MALL账号"
+    style="
+      align-self: stretch;
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+    "
+  >
+    <div
+      style="
+        color: #6a737c;
+        font-size: 12px;
+        font-family: PingFang SC;
+        font-weight: 400;
+        word-wrap: break-word;
+      "
+    >
+      2041MALL账号
+    </div>
+    <div
+      style="
+        justify-content: flex-end;
+        align-items: center;
+        gap: 6px;
+        display: flex;
+      "
+    >
+      <!-- 示例为空态 -->
+      <div
+        style="
+          color: #a1a8ae;
+          font-size: 11px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          word-wrap: break-word;
+        "
+      >
+        暂未绑定
+      </div>
+      <div
+        data-layer="Button → 去绑定"
+        style="
+          padding: 2px 8px;
+          background: #fdefec;
+          border-radius: 999px;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+        "
+      >
+        <div
+          style="
+            color: #f36744;
+            font-size: 11px;
+            font-family: PingFang SC;
+            font-weight: 400;
+            word-wrap: break-word;
+          "
+        >
+          去绑定
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

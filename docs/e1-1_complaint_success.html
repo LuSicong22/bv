@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>投诉团队长提交成功 - 新东家身份</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        /* 主品牌色阶 Primary */
+        --primary-50: #fff3f0;
+        --primary-100: #fee3dc;
+        --primary-200: #fdc7ba;
+        --primary-300: #fba893;
+        --primary-400: #f7896e;
+        --primary-500: #f36744;
+        --primary-600: #f04419;
+        --primary-700: #ce340d;
+
+        /* 中性色 Neutrals */
+        --neutral-0: #ffffff;
+        --neutral-50: #f7f9fb;
+        --neutral-100: #eef1f4;
+        --neutral-200: #dadfe4;
+        --neutral-400: #a1a8ae;
+        --neutral-600: #6a737c;
+        --neutral-900: #1e252d;
+
+        /* 状态色 States */
+        --success: #2dbb79;
+        --error: #f35b5b;
+        --warning: #f6c247;
+
+        /* 身份色：新东家（橙色） */
+        --owner-50: #fff3f0;
+        --owner-100: #fee3dc;
+        --owner-200: #fdc7ba;
+        --owner-300: #fba893;
+        --owner-400: #f7896e;
+        --owner-500: #f36744;
+        --owner-600: #f04419;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 844px;
+        background: var(--neutral-50);
+        font-family: "PingFang SC", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", system-ui, sans-serif;
+        color: var(--neutral-900);
+        line-height: 1.5;
+        display: flex;
+        justify-content: center;
+      }
+
+      .page {
+        width: 100%;
+        max-width: 420px;
+        min-height: 844px;
+        padding: 24px 16px 20px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .status-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 24px;
+        margin-bottom: 16px;
+      }
+
+      .status-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: var(--owner-50);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .status-icon span {
+        font-size: 34px;
+        color: var(--owner-500);
+        line-height: 1;
+      }
+
+      .status-title {
+        margin-top: 16px;
+        font-size: 18px; /* Title 3 */
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
+
+      .status-desc {
+        margin-top: 4px;
+        font-size: 13px;
+        color: var(--neutral-600);
+        text-align: center;
+      }
+
+      .card {
+        background: var(--neutral-0);
+        border-radius: 16px;
+        padding: 14px 16px 12px;
+        box-shadow: 0 8px 20px rgba(24, 39, 75, 0.04);
+        margin-bottom: 12px;
+      }
+
+      .card-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .info-label {
+        color: var(--neutral-600);
+        margin-right: 12px;
+        white-space: nowrap;
+      }
+
+      .info-value {
+        color: var(--neutral-900);
+        text-align: right;
+        word-break: break-all;
+      }
+
+      .info-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .divider {
+        height: 1px;
+        margin: 8px 0 6px;
+        background: var(--neutral-100);
+      }
+
+      .next-steps-title {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .next-steps-list {
+        padding-left: 16px;
+        margin: 0;
+        font-size: 13px;
+        color: var(--neutral-600);
+      }
+
+      .next-steps-list li + li {
+        margin-top: 4px;
+      }
+
+      .bottom-actions {
+        margin-top: auto;
+        padding-top: 16px;
+        display: flex;
+        gap: 12px;
+      }
+
+      .btn {
+        flex: 1;
+        height: 48px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid var(--neutral-200);
+        color: var(--neutral-900);
+      }
+
+      .btn-primary {
+        background: var(--owner-500);
+        color: var(--neutral-0);
+        box-shadow: 0 6px 16px rgba(243, 103, 68, 0.32);
+      }
+
+      .btn-primary:active {
+        background: var(--owner-600);
+      }
+
+      .btn-secondary:active {
+        background: var(--neutral-50);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- 顶部提交成功状态 -->
+      <div class="status-header">
+        <div class="status-icon">
+          <span>✓</span>
+        </div>
+        <div class="status-title">投诉团队长已提交</div>
+        <div class="status-desc">
+          我们已收到你的投诉，平台将在 1–3 个工作日内介入处理。<br />
+          处理结果会通过站内信和短信通知你。
+        </div>
+      </div>
+
+      <!-- 投诉摘要卡片 -->
+      <div class="card">
+        <div class="card-title">本次投诉信息</div>
+        <div class="info-row">
+          <div class="info-label">团队长</div>
+          <div class="info-value">王**（138****7788）</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">担保人</div>
+          <div class="info-value">张**（186****021）</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">投诉的代打赏订单</div>
+          <div class="info-value">订单号 677888</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">投诉原因</div>
+          <div class="info-value">团队长长期未处理代打赏</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">投诉时间</div>
+          <div class="info-value">2025-06-22 10:18:23</div>
+        </div>
+      </div>
+
+      <!-- 接下来你可以 -->
+      <div class="card">
+        <div class="next-steps-title">接下来你可以</div>
+        <ul class="next-steps-list">
+          <li>在「新东家身份 &gt; 代打赏记录」中查看投诉处理进度</li>
+          <li>如团队长有最新处理进展，系统会同步更新记录</li>
+          <li>如需要补充说明或凭证，可在客服沟通中继续提供</li>
+        </ul>
+      </div>
+
+      <!-- 底部按钮 -->
+      <div class="bottom-actions">
+        <button class="btn btn-secondary">查看投诉记录</button>
+        <button class="btn btn-primary">返回新东家首页</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>绑定团队长成功 - 新东家身份</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        /* 与 bv-color-system / 新东家身份保持一致的橙色系 */
+        --owner-400: #f7896e;
+        --owner-500: #f36744;
+        --owner-600: #f04419;
+
+        --neutral-0: #ffffff;
+        --neutral-25: #f9fbff;
+        --neutral-50: #f7f9fb;
+        --neutral-100: #eef1f4;
+        --neutral-400: #a1a8ae;
+        --neutral-600: #6a737c;
+        --neutral-900: #1e252d;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        margin: 0;
+        background: var(--neutral-50);
+        font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, system-ui,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: var(--neutral-900);
+      }
+
+      .screen {
+        width: 390px;
+        min-height: 844px;
+        margin: 0 auto;
+        background: var(--neutral-25);
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* 顶部橙色头部（延续 apply_team_leader.html 的结构） */
+      .hero {
+        padding: 16px 16px 20px;
+        background: linear-gradient(
+          90deg,
+          var(--owner-400) 0%,
+          var(--owner-500) 100%
+        );
+        color: var(--neutral-0);
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
+        box-shadow: 0 6px 18px rgba(243, 103, 68, 0.36);
+      }
+
+      .hero-top {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 16px;
+      }
+
+      .identity-pill {
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        font-size: 12px;
+        font-weight: 500; /* Caption / 12 / 500 */
+        line-height: 1.4;
+      }
+
+      .hero-title {
+        font-size: 20px; /* Title 2 / 20 / 600 */
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        margin-bottom: 4px;
+      }
+
+      .hero-subtitle {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        opacity: 0.9;
+      }
+
+      .main {
+        flex: 1;
+        padding: 24px 16px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .card {
+        width: 100%;
+        background: var(--neutral-0);
+        border-radius: 18px;
+        box-shadow: 0 10px 32px rgba(16, 33, 61, 0.06);
+        padding: 28px 16px 24px;
+        text-align: center;
+      }
+
+      /* 成功图标 */
+      .icon-success {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        margin: 0 auto 16px;
+        background: rgba(243, 103, 68, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon-success-inner {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--owner-500);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--neutral-0);
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .title {
+        font-size: 18px; /* Title 3 / 16–18 / 600，略放大 */
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 6px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--neutral-600);
+        margin-bottom: 18px;
+      }
+
+      /* 团队长信息块（仅展示脱敏信息和邀请码） */
+      .info-box {
+        width: 100%;
+        text-align: left;
+        background: var(--neutral-50);
+        border-radius: 14px;
+        border: 1px solid var(--neutral-100);
+        padding: 12px 12px 10px;
+        margin-bottom: 20px;
+      }
+
+      .info-row {
+        margin-bottom: 8px;
+      }
+
+      .info-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .label {
+        font-size: 12px; /* Caption / 12 / 400 */
+        font-weight: 400;
+        color: var(--neutral-600);
+        margin-bottom: 2px;
+      }
+
+      .value {
+        font-size: 16px; /* Title 3 / 16 / 500–600 */
+        font-weight: 500;
+        color: var(--neutral-900);
+        line-height: 1.5;
+      }
+
+      .btn-primary {
+        width: 100%;
+        height: 48px;
+        border-radius: 12px;
+        border: none;
+        background: var(--owner-500);
+        color: var(--neutral-0);
+        font-size: 14px; /* Button / 14 / 600 */
+        font-weight: 600;
+        line-height: 1.4;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(243, 103, 68, 0.35);
+        transition: background 0.14s ease-out, box-shadow 0.14s ease-out,
+          transform 0.08s ease-out;
+      }
+
+      .btn-primary:hover {
+        background: var(--owner-400);
+        transform: translateY(-1px);
+        box-shadow: 0 10px 26px rgba(243, 103, 68, 0.45);
+      }
+
+      .btn-primary:active {
+        background: var(--owner-600);
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(243, 103, 68, 0.45);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screen">
+      <!-- 顶部橙色头部，仅展示身份和状态 -->
+      <header class="hero">
+        <div class="hero-top">
+          <div class="identity-pill">新东家身份</div>
+        </div>
+        <div class="hero-title">绑定成功</div>
+        <div class="hero-subtitle">你已成功绑定团队长。</div>
+      </header>
+
+      <!-- 中部确认卡片 -->
+      <main class="main">
+        <section class="card">
+          <div class="icon-success">
+            <div class="icon-success-inner">✓</div>
+          </div>
+
+          <div class="title">绑定团队长成功</div>
+          <div class="subtitle">后续团队长将根据规则为你提供服务。</div>
+
+          <!-- 团队长信息（示例数据，实际由后端填充） -->
+          <div class="info-box">
+            <div class="info-row">
+              <div class="label">团队长昵称</div>
+              <div class="value">王**</div>
+            </div>
+            <div class="info-row">
+              <div class="label">团队长邀请码</div>
+              <div class="value">A8X92KF</div>
+            </div>
+          </div>
+
+          <button class="btn-primary" type="button">返回新东家首页</button>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

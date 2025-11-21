@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>绑定团队长 - 检验中</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      /* 与 d2_owner_bind_leader_input.html 保持一致 */
+      --primary-50:  #FFF3F0;
+      --primary-100: #FEE3DC;
+      --primary-200: #FDC7BA;
+      --primary-300: #FBA893;
+      --primary-400: #F7896E;
+      --primary-500: #F36744;
+      --primary-600: #F04419;
+
+      --neutral-0:   #FFFFFF;
+      --neutral-50:  #F7F9FB;
+      --neutral-100: #EEF1F4;
+      --neutral-200: #DADFE4;
+      --neutral-400: #A1A8AE;
+      --neutral-600: #6A737C;
+      --neutral-900: #1E252D;
+
+      --owner-50:  #FFF3F0;
+      --owner-100: #FEE3DC;
+      --owner-200: #FDC7BA;
+      --owner-300: #FBA893;
+      --owner-400: #F7896E;
+      --owner-500: #F36744;
+      --owner-600: #F04419;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: var(--neutral-50);
+      color: var(--neutral-900);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .screen {
+      width: 390px;
+      min-height: 844px;
+      margin: 0 auto;
+      background: var(--neutral-50);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero {
+      padding: 16px 16px 20px;
+      background: linear-gradient(90deg, var(--owner-400) 0%, var(--owner-500) 100%);
+      color: var(--neutral-0);
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      box-shadow: 0 6px 18px rgba(243, 103, 68, 0.36);
+    }
+
+    .hero-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .hero-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      color: var(--neutral-0);
+    }
+
+    .hero-identity-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .hero-title {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .hero-subtitle {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+
+    .main {
+      flex: 1;
+      padding: 16px;
+      margin-top: 4px;
+    }
+
+    .panel {
+      background: var(--neutral-0);
+      border-radius: 18px;
+      box-shadow: 0 10px 32px rgba(16, 33, 61, 0.06);
+      padding: 16px 16px 20px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .label-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .label-main {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--neutral-900);
+    }
+
+    .label-required-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-500);
+      margin-left: 4px;
+    }
+
+    .input-wrapper {
+      margin-bottom: 6px;
+      position: relative;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--neutral-100);
+      background: var(--neutral-0);
+      padding: 0 40px 0 12px;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-900);
+      outline: none;
+    }
+
+    .input-field::placeholder {
+      color: var(--neutral-400);
+    }
+
+    /* 右侧加载中动画小圆点 */
+    .loading-indicator {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    .loading-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-400);
+      opacity: 0.4;
+      animation: dot-bounce 0.9s infinite ease-in-out;
+    }
+
+    .loading-dot:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .loading-dot:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes dot-bounce {
+      0%, 80%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+      40% {
+        transform: translateY(-4px);
+        opacity: 1;
+      }
+    }
+
+    .tip {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .warning {
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--primary-600);
+      line-height: 1.5;
+    }
+
+    .btn-primary {
+      width: 100%;
+      height: 48px;
+      margin-top: 16px;
+      border: none;
+      border-radius: 12px;
+      background: var(--owner-400);
+      color: var(--neutral-0);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      box-shadow: 0 6px 18px rgba(243, 103, 68, 0.25);
+      cursor: default;
+      position: relative;
+    }
+
+    .btn-primary span {
+      opacity: 0.9;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-top-color: var(--neutral-0);
+      animation: spinner 0.8s linear infinite;
+    }
+
+    @keyframes spinner {
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
+    /* 禁用 hover/active 效果，表示正在处理中 */
+    .btn-primary:hover,
+    .btn-primary:active {
+      background: var(--owner-400);
+      transform: none;
+      box-shadow: 0 6px 18px rgba(243, 103, 68, 0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+    <header class="hero">
+      <div class="hero-top-row">
+        <button class="hero-back" type="button">&#x2190;</button>
+        <div class="hero-identity-pill">新东家身份</div>
+      </div>
+      <div class="hero-title">绑定团队长</div>
+      <div class="hero-subtitle">正在检验邀请码，请稍候…</div>
+    </header>
+
+    <main class="main">
+      <section class="panel">
+        <div class="section-title">绑定信息</div>
+
+        <div class="label-row">
+          <div class="label-main">团队长邀请码</div>
+          <span class="label-required-dot"></span>
+        </div>
+
+        <div class="input-wrapper">
+          <input
+            class="input-field"
+            type="text"
+            placeholder="请输入团队长邀请码"
+            value="A8X92KF"
+            disabled
+          />
+          <div class="loading-indicator" aria-hidden="true">
+            <span class="loading-dot"></span>
+            <span class="loading-dot"></span>
+            <span class="loading-dot"></span>
+          </div>
+        </div>
+
+        <div class="tip">已收到你的邀请码，正在向服务器检验，请勿关闭页面。</div>
+        <div class="warning">*绑定团队长后，团队长不可更换</div>
+
+        <button class="btn-primary" type="button">
+          <span>正在检验邀请码…</span>
+        </button>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,738 @@
+<!-- 团队长身份首页（宽 390，最小高 844） -->
+<div
+  data-layer="团队长身份首页"
+  style="
+    width: 390px;
+    min-height: 844px;
+    position: relative;
+    background: #f7f9fb;
+    font-family: PingFang SC, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      system-ui, sans-serif;
+  "
+>
+  <!-- 顶部标题栏（与新东家首页一致） -->
+  <div
+    data-layer="Header - Title"
+    style="
+      width: 350px;
+      height: 44px;
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <div
+      style="
+        color: #1e252d;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+      "
+    >
+      BV共赢计划
+    </div>
+  </div>
+
+  <!-- 主内容滚动区 -->
+  <div
+    data-layer="Main"
+    style="
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 390px;
+      padding-top: 63px;
+      padding-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      box-sizing: border-box;
+    "
+  >
+    <!-- 头部身份卡片：团队长（绿色系） -->
+    <div
+      data-layer="Header → Section"
+      style="
+        width: 366px;
+        height: 152px;
+        background: radial-gradient(
+            ellipse 129.38% 157.6% at 0% 0%,
+            rgba(255, 255, 255, 0.16) 0%,
+            rgba(255, 255, 255, 0) 55%
+          ),
+          radial-gradient(
+            ellipse 129.38% 157.6% at 100% 0%,
+            rgba(16, 185, 129, 0.22) 0%,
+            rgba(16, 185, 129, 0) 55%
+          ),
+          linear-gradient(141deg, #059669 0%, #047857 100%);
+        border-radius: 24px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+      "
+    >
+      <!-- 头像 -->
+      <div
+        data-layer="Avatar"
+        style="
+          position: absolute;
+          left: 18px;
+          top: 22px;
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.2);
+          overflow: hidden;
+        "
+      ></div>
+
+      <!-- 身份标签 -->
+      <div
+        data-layer="身份标签"
+        style="
+          position: absolute;
+          right: 16px;
+          top: 20px;
+          height: 27px;
+          padding: 0 12px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.24);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <span
+          style="
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 17px;
+          "
+          >团队长身份</span
+        >
+      </div>
+
+      <!-- 姓名 & ID -->
+      <div
+        data-layer="User Info"
+        style="
+          position: absolute;
+          left: 88px;
+          top: 24px;
+          right: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 22px;
+          "
+        >
+          <span>张三</span>
+        </div>
+        <div
+          style="
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 18px;
+          "
+        >
+          ID：1823933939
+        </div>
+      </div>
+
+      <!-- 指标行：当前星级 / 担保人 / 新东家 -->
+      <div
+        data-layer="Stats Row"
+        style="
+          position: absolute;
+          left: 16px;
+          right: 16px;
+          bottom: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            color: rgba(255, 255, 255, 0.86);
+          "
+        >
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 17px;
+              opacity: 0.9;
+            "
+          >
+            当前星级
+          </div>
+          <div style="font-size: 14px; font-weight: 600; line-height: 20px">
+            1 星
+          </div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            color: rgba(255, 255, 255, 0.86);
+            text-align: center;
+          "
+        >
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 17px;
+              opacity: 0.9;
+            "
+          >
+            已绑定担保人
+          </div>
+          <div style="font-size: 14px; font-weight: 600; line-height: 20px">
+            2 位
+          </div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            color: rgba(255, 255, 255, 0.86);
+            text-align: right;
+          "
+        >
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 17px;
+              opacity: 0.9;
+            "
+          >
+            已绑定新东家
+          </div>
+          <div style="font-size: 14px; font-weight: 600; line-height: 20px">
+            15 位
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 我的担保人 Summary -->
+    <div
+      data-layer="我的担保人卡片"
+      style="
+        width: 366px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: #ffffff;
+        box-shadow: 0 8px 24px rgba(12, 32, 61, 0.04);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #eef1f4;
+      "
+    >
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <div
+          style="
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e252d;
+            line-height: 20px;
+          "
+        >
+          我的担保人
+        </div>
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 400;
+            color: #6a737c;
+            line-height: 18px;
+          "
+        >
+          已绑定 <span style="color: #059669">2</span> 位担保人
+        </div>
+      </div>
+      <div
+        style="
+          width: 24px;
+          height: 24px;
+          border-radius: 999px;
+          border: 1px solid #d9dde3;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          color: #a1a8ae;
+        "
+      >
+        &gt;
+      </div>
+    </div>
+
+    <!-- 功能入口 -->
+    <div
+      data-layer="本次你可以做什么"
+      style="
+        width: 366px;
+        padding: 12px 0 4px;
+        border-radius: 16px;
+        background: #ffffff;
+        box-sizing: border-box;
+        box-shadow: 0 8px 24px rgba(12, 32, 61, 0.04);
+        border: 1px solid #eef1f4;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      "
+    >
+      <div
+        style="
+          padding: 0 14px 4px;
+          font-size: 14px;
+          font-weight: 600;
+          color: #1e252d;
+          line-height: 20px;
+        "
+      >
+        本次你可以做什么
+      </div>
+
+      <!-- 主入口：新东家代打赏记录 -->
+      <div
+        data-layer="入口-新东家代打赏记录"
+        style="
+          margin: 0 10px;
+          padding: 12px 12px;
+          border-radius: 16px;
+          background: linear-gradient(140deg, #10b981 0%, #059669 100%);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          box-shadow: 0 10px 24px rgba(5, 150, 105, 0.35);
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div
+            style="
+              font-size: 14px;
+              font-weight: 600;
+              color: #ffffff;
+              line-height: 20px;
+            "
+          >
+            新东家代打赏记录
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: rgba(255, 255, 255, 0.86);
+              line-height: 18px;
+            "
+          >
+            查看并处理新东家的代打赏申请记录
+          </div>
+        </div>
+        <div
+          style="
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 16px;
+          "
+        >
+          &gt;
+        </div>
+      </div>
+
+      <!-- 入口：新东家被打赏记录 -->
+      <div
+        data-layer="入口-新东家被打赏记录"
+        style="
+          margin: 0 10px;
+          padding: 10px 12px;
+          border-radius: 14px;
+          background: #ffffff;
+          border: 1px solid #eef1f4;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div
+            style="
+              font-size: 14px;
+              font-weight: 500;
+              color: #1e252d;
+              line-height: 20px;
+            "
+          >
+            新东家被打赏记录
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #6a737c;
+              line-height: 18px;
+            "
+          >
+            查看所有新东家已完成的代打赏记录
+          </div>
+        </div>
+        <div
+          style="
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            border: 1px solid #d9dde3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #a1a8ae;
+          "
+        >
+          &gt;
+        </div>
+      </div>
+
+      <!-- 入口：红包领取记录 -->
+      <div
+        data-layer="入口-红包领取记录"
+        style="
+          margin: 0 10px;
+          padding: 10px 12px;
+          border-radius: 14px;
+          background: #ffffff;
+          border: 1px solid #eef1f4;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div
+            style="
+              font-size: 14px;
+              font-weight: 500;
+              color: #1e252d;
+              line-height: 20px;
+            "
+          >
+            红包领取记录
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #6a737c;
+              line-height: 18px;
+            "
+          >
+            查看已获得的 A2/A4/A6/A8 红包明细
+          </div>
+        </div>
+        <div
+          style="
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            border: 1px solid #d9dde3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #a1a8ae;
+          "
+        >
+          &gt;
+        </div>
+      </div>
+
+      <!-- 入口：A8邀请列表 -->
+      <div
+        data-layer="入口-A8邀请列表"
+        style="
+          margin: 0 10px 8px;
+          padding: 10px 12px;
+          border-radius: 14px;
+          background: #ffffff;
+          border: 1px solid #eef1f4;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div
+            style="
+              font-size: 14px;
+              font-weight: 500;
+              color: #1e252d;
+              line-height: 20px;
+            "
+          >
+            A8邀请列表
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #6a737c;
+              line-height: 18px;
+            "
+          >
+            查看邀请新东家及对应 A 等级和有效期
+          </div>
+        </div>
+        <div
+          style="
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            border: 1px solid #d9dde3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #a1a8ae;
+          "
+        >
+          &gt;
+        </div>
+      </div>
+    </div>
+
+    <!-- 待审核新东家列表 -->
+    <div
+      data-layer="待审核新东家 Section"
+      style="width: 366px; display: flex; flex-direction: column; gap: 8px"
+    >
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <div
+          style="
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e252d;
+            line-height: 20px;
+          "
+        >
+          待审核新东家
+        </div>
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 400;
+            color: #6a737c;
+            line-height: 18px;
+          "
+        >
+          查看全部
+        </div>
+      </div>
+
+      <!-- 单条新东家卡片示例 1 -->
+      <div
+        data-layer="待审核新东家卡片-1"
+        style="
+          padding: 10px 12px;
+          border-radius: 16px;
+          background: #ffffff;
+          border: 1px solid #eef1f4;
+          box-shadow: 0 8px 24px rgba(12, 32, 61, 0.04);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div
+            style="
+              font-size: 14px;
+              font-weight: 500;
+              color: #1e252d;
+              line-height: 20px;
+            "
+          >
+            张**（177****7883）
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #6a737c;
+              line-height: 18px;
+            "
+          >
+            账号：19900000009
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #6a737c;
+              line-height: 18px;
+            "
+          >
+            申请代打赏：1,000&nbsp;CNV
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+          "
+        >
+          <div
+            style="
+              padding: 2px 10px;
+              border-radius: 999px;
+              background: #fff3f0;
+              color: #f04419;
+              font-size: 11px;
+              font-weight: 500;
+              line-height: 16px;
+            "
+          >
+            待审核
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #a1a8ae;
+              line-height: 18px;
+            "
+          >
+            2025-01-01 14:23
+          </div>
+        </div>
+      </div>
+
+      <!-- 单条新东家卡片示例 2 -->
+      <div
+        data-layer="待审核新东家卡片-2"
+        style="
+          padding: 10px 12px;
+          border-radius: 16px;
+          background: #ffffff;
+          border: 1px solid #eef1f4;
+          box-shadow: 0 8px 24px rgba(12, 32, 61, 0.04);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div
+            style="
+              font-size: 14px;
+              font-weight: 500;
+              color: #1e252d;
+              line-height: 20px;
+            "
+          >
+            李**（138****2203）
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #6a737c;
+              line-height: 18px;
+            "
+          >
+            账号：19900000123
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #6a737c;
+              line-height: 18px;
+            "
+          >
+            申请代打赏：2,000&nbsp;CNV
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+          "
+        >
+          <div
+            style="
+              padding: 2px 10px;
+              border-radius: 999px;
+              background: #ecfdf5;
+              color: #059669;
+              font-size: 11px;
+              font-weight: 500;
+              line-height: 16px;
+            "
+          >
+            已通过
+          </div>
+          <div
+            style="
+              font-size: 12px;
+              font-weight: 400;
+              color: #a1a8ae;
+              line-height: 18px;
+            "
+          >
+            2024-12-18 09:31
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
